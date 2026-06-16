@@ -61,6 +61,10 @@ permalink は `date` と `slug` から `/YYYY/MM/slug/` を自動生成（旧 Wo
 | `scripts/fetch-media.mjs` | 記事参照画像のみDL→最適化→`public/wp-content/uploads/` |
 | `scripts/mirror-chrome.mjs` | 旧サイトの CSS/JS/font を `public/` に vendoring |
 | `scripts/build-shell.mjs` | 旧 HTML を `src/mirror/` のフラグメントに carve |
+| `scripts/fetch-missing.mjs` | `npm run build` 後、dist の全 `/wp-content` 参照を走査し未取得アセットをライブから補完 |
+| `scripts/normalize-nfc.mjs` | 画像ファイル名と参照を NFC に統一（macOS の NFD で Linux/Pages が 404 する不具合対策） |
+
+> **注意（macOS の落とし穴）**: macOS は日本語ファイル名を NFD で保持するが、GitHub Pages(Linux) はバイト厳密一致。濁点付き（が/ボ等）のファイル名は **ローカルでは 200 でもライブで 404** になる。`normalize-nfc.mjs` で対処済み。画像周りの不具合はローカルでなく**ライブURLで**確認すること。
 
 ## デプロイ
 
