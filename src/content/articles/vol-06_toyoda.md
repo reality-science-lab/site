@@ -4,11 +4,11 @@ date: 2021-01-31
 slug: "vol-06_toyoda"
 categories: [event]
 series_label: "現実科学レクチャーシリーズ"
-featured_image: "/wp-content/uploads/2020/10/現実科学ラボ_vol6-1.png"
+featured_image: "/wp-content/uploads/2020/10/現実科学ラボ_vol6-1.png"
 wp_id: 638
 ---
 
-現実科学ラボでは、各分野で活躍している専門家とともに「現実とは？」について考えていくレクチャーシリーズを2020年6月より毎月開催しています。 第6回となる今回は、2020年11月24日、建築家の豊田啓介さんをお迎えしました。さらにスペシャルゲストとして、株式会社imaCEOの三浦亜美さんにも議論に加わっていただきました。 本記事では、当日の簡単なレポートをお届けします。 ![](/wp-content/uploads/2020/10/現実科学ラボ_vol6-1.png) [https://reality-science006.peatix.com/?lang=ja](https://reality-science006.peatix.com/?lang=ja)
+現実科学ラボでは、各分野で活躍している専門家とともに「現実とは？」について考えていくレクチャーシリーズを2020年6月より毎月開催しています。 第6回となる今回は、2020年11月24日、建築家の豊田啓介さんをお迎えしました。さらにスペシャルゲストとして、株式会社imaCEOの三浦亜美さんにも議論に加わっていただきました。 本記事では、当日の簡単なレポートをお届けします。 ![](/wp-content/uploads/2020/10/現実科学ラボ_vol6-1.png) [https://reality-science006.peatix.com/?lang=ja](https://reality-science006.peatix.com/?lang=ja)
 
 # 現実科学とは <iframe class="note-embed" style="border: 0; display: block; max-width: 99%; width: 494px; padding: 0px; margin: 10px 0px; position: static; visibility: visible;" src="https://note.com/embed/notes/n529845fc437e" height="200"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span></iframe>
 
@@ -18,7 +18,7 @@ wp_id: 638
 
 # 豊田啓介さん
 
-![](/wp-content/uploads/2021/01/cover-8DFPRw6zd6UMoXjY00XdPaYJBBU4u3YW.jpeg)         建築家 noizパートナー、gluonパートナー、東京大学生産技術研究所客員教授 1972年、千葉県出身。1996年、東京大学工学部建築学科卒業。1996~2000年、安dd藤忠雄建築研究所を経て、2002年コロンビア大学建築学部修士課程(AAD)修了。2002~2006年、SHoP Architects(ニューヨーク)を経て、2007年より東京と台北をベースに建築デザイン事務所 noiz を蔡佳萱と設立、2016年に酒井康介が加わり共同主宰。2017年、「建築・都市×テック×ビジネス」をテーマにした領域横断型プラットフォーム gluonを金田充弘と共同で設立。コンピューテーショナルデザインを積極的に取り入れた設計・開発・リサーチ・コンサルティング等の活動を、 建築やインテリア、都市、ファッションなど、多分野横断型で展開している。現在、東京藝術大学アートメディアセンター非常勤講師、慶應義塾大学SFC非常勤講師、芸術情報大学院大学 (IAMAS)非常勤講師、東京大学生産技術研究所客員教授(2020年~)。「WIRED Audi INNOVATION AWAED 2016」受賞イノヴェイター。2025年大阪・関西国際博覧会 誘致会場計画 アドバイザー(2017年~2018年)。著書に「Rhinoceros+Grasshopper 建築デザイン実践ハン ドブック」(共著、2010年、彰国社)など。
+![](/wp-content/uploads/2021/01/cover-8DFPRw6zd6UMoXjY00XdPaYJBBU4u3YW.jpeg)         建築家 noizパートナー、gluonパートナー、東京大学生産技術研究所客員教授 1972年、千葉県出身。1996年、東京大学工学部建築学科卒業。1996~2000年、安dd藤忠雄建築研究所を経て、2002年コロンビア大学建築学部修士課程(AAD)修了。2002~2006年、SHoP Architects(ニューヨーク)を経て、2007年より東京と台北をベースに建築デザイン事務所 noiz を蔡佳萱と設立、2016年に酒井康介が加わり共同主宰。2017年、「建築・都市×テック×ビジネス」をテーマにした領域横断型プラットフォーム gluonを金田充弘と共同で設立。コンピューテーショナルデザインを積極的に取り入れた設計・開発・リサーチ・コンサルティング等の活動を、 建築やインテリア、都市、ファッションなど、多分野横断型で展開している。現在、東京藝術大学アートメディアセンター非常勤講師、慶應義塾大学SFC非常勤講師、芸術情報大学院大学 (IAMAS)非常勤講師、東京大学生産技術研究所客員教授(2020年~)。「WIRED Audi INNOVATION AWAED 2016」受賞イノヴェイター。2025年大阪・関西国際博覧会 誘致会場計画 アドバイザー(2017年~2018年)。著書に「Rhinoceros+Grasshopper 建築デザイン実践ハン ドブック」(共著、2010年、彰国社)など。
 
 # 三浦亜美さん
 
