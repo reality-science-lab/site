@@ -154,6 +154,11 @@ fs.writeFileSync(path.join(OUT, 'article.bodyclass.txt'), bodyClass(article));
 //    Templatize the page title and the cards-grid contents; drop pagination.
 {
   let arch = pageBody(read('event'));
+  // Elementor adds `elementor-has-item-ratio` to the posts container via JS at
+  // runtime; that class is what makes the thumbnail a fixed-ratio cover box (the
+  // img becomes position:absolute). The static mirror has no JS, so add it here —
+  // otherwise images sit at natural size with blank space below.
+  arch = arch.replace('elementor-posts-container elementor-posts', 'elementor-posts-container elementor-has-item-ratio elementor-posts');
   const pcIdx = arch.indexOf('elementor-posts-container');
   const open = arch.lastIndexOf('<div', pcIdx);
   const [, end] = extractBalancedDiv(arch, open);
