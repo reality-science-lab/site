@@ -39,9 +39,10 @@
 - だから「トップに新しいレクチャーを出す」には、**記事を1本追加するだけ**でよい。
 - ヒーロー画像やキャッチコピーなど“固定の見た目”を変えたいときは Markdown では変えられない。**@Chiaki / 開発に相談**（`src/mirror/` を直接いじらない）。
 
-### 📄 研究所の資材（趣意書・プレスリリース・議事録・デザイン）を更新する
-- 置き場所は **`institute/docs/`**（`manifesto.md`、`press-release-vX.Y.md`、`design.md`、`meetings/` など）。サイトには出ない**内部の正本ドキュメント**。
+### 📄 研究所の資材（趣意書・プレスリリース・デザイン）を更新する
+- 置き場所は **`institute/docs/`**（`manifesto.md`、`press-release-vX.Y.md`、`design.md` など）。サイトには出ない**内部の正本ドキュメント**。
 - 更新は Markdown を編集 → ブランチ → PR。バージョンを切るもの（プレスリリース等）は **新しい版を別ファイル**で足し、古い版は残す（履歴を消さない）。
+- **議事録は非公開**: この公開 repo には含めず、private repo `reality-science-docs` の `meetings/` で管理（アクセスは Chiaki に依頼）。
 
 ### 🚀 研究所 LP を更新・公開する
 - LP の中身は **`institute/apps/lp/`**。**公開されているのは `v7`**（ビルド時に `scripts/embed-lp.mjs` が `v7` を `/institute/lp/` へコピーして配信）。
