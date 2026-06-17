@@ -2,7 +2,7 @@
 // The site is authored with root-absolute paths (/wp-content/…, /event/, …) which
 // are correct for the eventual custom domain at root. For a project-page preview
 // (https://<org>.github.io/<repo>/) every root-absolute reference needs the base
-// prefix. Run AFTER `astro build`:  node scripts/rebase.mjs /reality-science
+// prefix. Run AFTER `astro build`:  node scripts/rebase.mjs reality-science-site
 // Idempotent: a negative lookahead skips already-prefixed URLs. Skipping this step
 // (custom-domain cutover at root) leaves the build untouched.
 import fs from 'node:fs';
@@ -13,8 +13,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.resolve(__dirname, '../dist');
 let base = process.argv[2] || '';
 if (!base) { console.error('usage: node scripts/rebase.mjs /<base>'); process.exit(1); }
-base = '/' + base.replace(/^\/|\/$/g, '');             // normalize to /reality-science
-const b = base.slice(1);                                // reality-science (for lookahead)
+base = '/' + base.replace(/^\/|\/$/g, '');             // normalize to /reality-science-site
+const b = base.slice(1);                                // reality-science-site (for lookahead)
 
 // negative lookahead so we never double-prefix or touch //, http, data:, mailto:, #
 const NEG = `(?!\\/|${b}\\/|http|data:|mailto:|tel:|#)`;
