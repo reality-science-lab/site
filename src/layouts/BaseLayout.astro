@@ -61,6 +61,32 @@ const ogImageUrl = ogImage
     <Fragment set:html={footerHtml} />
     <Fragment set:html={scriptsHtml} />
     <script is:inline>
+      // Stretch Section — Elementor expands `.elementor-section-stretched` to the
+      // full viewport width via JS at runtime. Without it, stretched sections (the
+      // hero, etc.) stay at the boxed container width and show white side-margins on
+      // wide screens. Replicate Elementor's behavior: width = viewport, margin-left =
+      // -offset so the section aligns to the viewport's left edge.
+      (function () {
+        function stretch() {
+          var vw = document.documentElement.clientWidth;
+          var list = document.querySelectorAll('.elementor-section-stretched');
+          for (var i = 0; i < list.length; i++) {
+            var s = list[i];
+            s.style.width = '';
+            s.style.marginLeft = '';
+            s.style.marginRight = '';
+            var offset = s.getBoundingClientRect().left + (window.pageXOffset || 0);
+            s.style.width = vw + 'px';
+            s.style.marginLeft = -offset + 'px';
+          }
+        }
+        stretch();
+        window.addEventListener('resize', stretch);
+        window.addEventListener('load', stretch);
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', stretch);
+      })();
+    </script>
+    <script is:inline>
       // Mobile hamburger toggle — Elementor's own JS isn't reliably bootstrapped on
       // the static mirror, so drive the menu directly (matches Elementor's behavior).
       document.addEventListener('click', function (e) {
