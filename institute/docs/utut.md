@@ -205,7 +205,7 @@ LP の構造（§00〜§09 ワイヤーフレーム）は触らない。`apps/lp
 
 ## 8. 関連ドキュメント
 
-- [[intent-statement-v2.md]] — **藤井学長 v2 設立趣意書（原本）**。プロジェクト全体の正本。UTUTU はこの趣意の視覚言語化
+- [[manifesto.md]] — **藤井学長 設立趣意書（fix版・正本）**。プロジェクト全体の正本。UTUTU はこの趣意の視覚言語化（旧 v2 ドラフトは `_archive/intent-statement-v2.md`）
 - [[fill-the-world.md]] — 大学全体ミッション。UTUTU の「色を足す＝満たす」と接続
 - [[lp-wireframe.md]] — LP 構造仕様。UTUTU は構造を変えずビジュアルに差し込む
 - [[press-release-v0.5.md]] — プレスリリース（v2 趣意書を正本に書き直したもの）
