@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>設立趣意書 v.2 — 現実科学研究所</title>
+  <meta name="description" content="現実科学研究所 設立趣意書 v.2（平易版）— 藤井直敬 学長による正本。" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Zen+Old+Mincho:wght@500;700;900&family=Zen+Kaku+Gothic+Antique:wght@400;500;700;900&family=Shippori+Mincho+B1:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../styles/rsi-tokens.css" />
+  <link rel="stylesheet" href="../styles/doc.css" />
+</head>
+<body>
+  <header class="docbar">
+    <div class="brand">
+      <span class="mark">⌖</span>
+      <span>現実科学研究所</span>
+      <span style="opacity:.45">· Reality Science Institute</span>
+    </div>
+    <nav>
+      <a href="../">LP</a>
+      <a href="./" class="active">趣意書</a>
+      <a href="../press/">リリース</a>
+    </nav>
+  </header>
+
+  <div class="draft-banner">
+    <strong>DRAFT v.2</strong> ／ Public-Facing Plain Version ・ 公開前の最終確認段階
+  </div>
+
+  <main class="doc-wrap">
+    <div class="doc-meta">
+      <span>§ MANIFESTO</span>
+      <span>設立趣意書 平易版</span>
+      <span>v.2 ／ 2026.05</span>
+    </div>
+    <article id="doc" class="loading"></article>
+  </main>
+
+  <footer class="doc-foot">
+    <span>⌖ 現実科学研究所 ／ Reality Science Institute</span>
+    <span>EST. 2026.07 — © 2026 RSI · All Editable</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script>
+    fetch('../data/manifesto.md')
+      .then(r => r.text())
+      .then(md => {
+        const el = document.getElementById('doc');
+        el.innerHTML = marked.parse(md);
+        el.classList.remove('loading');
+      })
+      .catch(err => {
+        document.getElementById('doc').innerHTML =
+          '<p style="color:var(--vermilion)">読み込みに失敗しました：' + err.message + '</p>';
+      });
+  </script>
+</body>
+</html>

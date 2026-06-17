@@ -1,0 +1,256 @@
+/* ============================================================
+   現実科学研究所 v1 — 文書ページ（趣意書 / リリース）
+   紙・墨・朱・燐光
+   ============================================================ */
+
+/* doc bar */
+.docbar {
+  position: sticky; top: 0; z-index: 80;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.docbar .brand { display: flex; align-items: center; gap: 12px; }
+.docbar .brand .mark { color: var(--shu); font-size: 14px; }
+.docbar nav { display: flex; gap: 24px; align-items: center; }
+.docbar nav a {
+  opacity: 0.65;
+  transition: opacity .2s, color .2s, text-shadow .2s;
+  color: var(--paper);
+}
+.docbar nav a:hover { opacity: 1; color: var(--rin); text-shadow: 0 0 8px color-mix(in oklab, var(--rin) 50%, transparent); }
+.docbar nav a.active { color: var(--shu); opacity: 1; }
+@media (max-width: 720px) {
+  /* docbar をモバイルでも全リンク表示（2段組み） */
+  .docbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 14px;
+    gap: 8px;
+  }
+  .docbar .brand {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 10px;
+  }
+  .docbar nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+}
+
+/* draft banner */
+.draft-banner {
+  background: var(--shu);
+  color: var(--paper);
+  padding: 10px 28px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid var(--ink);
+}
+.draft-banner strong { font-weight: 700; }
+
+/* doc layout */
+.doc-wrap {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 88px 32px 160px;
+  background: var(--paper);
+  color: var(--ink);
+}
+.doc-meta {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--shu);
+  margin-bottom: 20px;
+  display: flex; gap: 14px; align-items: center;
+}
+.doc-meta::after {
+  content: ""; flex: 1; height: 1px; background: var(--ink); opacity: 0.32;
+}
+
+/* doc content */
+#doc {
+  font-family: var(--f-serif);
+  font-size: 16px;
+  line-height: 2;
+  font-feature-settings: "palt" 1;
+  color: var(--ink);
+}
+#doc h1 {
+  font-family: var(--f-serif);
+  font-weight: 800;
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  margin: 0 0 36px;
+}
+#doc h2 {
+  font-family: var(--f-serif);
+  font-weight: 800;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  margin: 64px 0 22px;
+  padding-top: 24px;
+  border-top: 1px solid var(--ink);
+  position: relative;
+}
+#doc h2::before {
+  content: "§";
+  position: absolute;
+  left: -28px;
+  top: 22px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--shu);
+  letter-spacing: 0;
+}
+#doc h3 {
+  font-family: var(--f-serif);
+  font-weight: 700;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  margin: 36px 0 14px;
+  color: var(--ink);
+  padding-left: 16px;
+  border-left: 3px solid var(--shu);
+}
+#doc p {
+  margin: 0 0 18px;
+  font-family: var(--f-serif);
+  font-size: 16px;
+  line-height: 2.05;
+  color: var(--ink-2);
+}
+#doc strong { color: var(--shu); font-weight: 700; }
+#doc em { font-style: italic; color: var(--ink); }
+#doc a {
+  color: var(--aqua);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color .2s, text-shadow .2s;
+}
+#doc a:hover {
+  color: var(--rin);
+  text-shadow: 0 0 6px color-mix(in oklab, var(--rin) 35%, transparent);
+}
+#doc ul, #doc ol {
+  margin: 0 0 22px;
+  padding-left: 22px;
+  font-family: var(--f-serif);
+  font-size: 16px;
+  line-height: 2;
+  color: var(--ink-2);
+}
+#doc li { margin-bottom: 4px; }
+#doc hr {
+  border: 0;
+  height: 1px;
+  background: var(--ink);
+  opacity: 0.32;
+  margin: 48px 0;
+}
+#doc blockquote {
+  margin: 28px 0;
+  padding: 18px 22px;
+  border-left: 3px solid var(--shu);
+  background: var(--paper-2);
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink);
+}
+#doc code {
+  font-family: var(--f-mono);
+  font-size: 0.88em;
+  background: var(--paper-2);
+  padding: 2px 6px;
+  color: var(--ink);
+}
+/* table をモバイルで横スクロール可能に */
+#doc .table-wrap, #doc table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+#doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-family: var(--f-sans);
+  font-size: 14px;
+  border: 1px solid var(--ink);
+  white-space: nowrap;
+}
+#doc th, #doc td {
+  padding: 10px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid color-mix(in oklab, var(--ink) 20%, transparent);
+  border-right: 1px solid color-mix(in oklab, var(--ink) 20%, transparent);
+  color: var(--ink-2);
+}
+#doc th {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* loading */
+#doc.loading::before {
+  content: "loading…";
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+
+/* footer */
+.doc-foot {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 36px 28px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.doc-foot a { color: var(--paper); }
+.doc-foot a:hover { color: var(--rin); }
+@media (max-width: 720px) {
+  .doc-foot { flex-direction: column; gap: 16px; text-align: center; }
+  /* docbar 2行分の余白を含めて padding-top を厚めに */
+  .doc-wrap { padding: 56px 18px 100px; }
+  .draft-banner { padding: 8px 14px; font-size: 10px; letter-spacing: 0.18em; }
+  .doc-meta { font-size: 9.5px; letter-spacing: 0.22em; }
+  #doc { font-size: 15px; line-height: 1.9; }
+  #doc p { font-size: 15px; line-height: 1.95; }
+  #doc h2 { margin: 48px 0 18px; padding-top: 18px; }
+  #doc h2::before { display: none; }
+  #doc h3 { margin: 32px 0 12px; padding-left: 12px; }
+  #doc blockquote { padding: 14px 16px; font-size: 15px; }
+}

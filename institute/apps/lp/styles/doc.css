@@ -1,0 +1,237 @@
+/* ============================================================
+   現実科学研究所 — 文書ページ（趣意書 / リリース）v0 スタイル
+   design.md v0.2 準拠
+   ============================================================ */
+
+/* doc bar (top nav) */
+.docbar {
+  position: sticky; top: 0; z-index: 80;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px;
+  background: var(--ink);
+  color: var(--crema);
+  font-family: var(--voice-3);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(244,233,210,0.18);
+}
+.docbar .brand { display: flex; align-items: center; gap: 12px; }
+.docbar .brand .mark { color: var(--vermilion); font-size: 14px; }
+.docbar nav { display: flex; gap: 24px; align-items: center; }
+.docbar nav a { opacity: 0.7; transition: opacity .2s, color .2s; color: var(--crema); }
+.docbar nav a:hover { opacity: 1; color: var(--vermilion); }
+.docbar nav a.active { color: var(--vermilion); opacity: 1; }
+@media (max-width: 720px) {
+  /* docbar をモバイルでも全リンク表示（2段組み） */
+  .docbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 14px;
+    gap: 8px;
+  }
+  .docbar .brand {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 10px;
+  }
+  .docbar nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+}
+
+/* draft banner */
+.draft-banner {
+  background: var(--vermilion);
+  color: var(--crema);
+  padding: 10px 28px;
+  font-family: var(--voice-3);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 2px solid var(--ink);
+}
+.draft-banner strong { font-weight: 700; }
+
+/* doc layout */
+.doc-wrap {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 96px 32px 160px;
+  background: var(--crema);
+  color: var(--ink);
+}
+.doc-meta {
+  font-family: var(--voice-3);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--vermilion);
+  margin-bottom: 16px;
+  display: flex; gap: 14px; align-items: center;
+}
+.doc-meta::after {
+  content: ""; flex: 1; height: 1px; background: var(--ink); opacity: 0.4;
+}
+
+/* doc content (markdown rendered) */
+#doc {
+  font-family: var(--voice-2-gothic);
+  font-size: 16px;
+  line-height: 1.95;
+  font-feature-settings: "palt" 1;
+}
+#doc h1 {
+  font-family: var(--voice-2-mincho);
+  font-weight: 900;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  margin: 0 0 32px;
+}
+#doc h2 {
+  font-family: var(--voice-2-mincho);
+  font-weight: 900;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  margin: 64px 0 24px;
+  padding-top: 24px;
+  border-top: var(--line-w) solid var(--ink);
+}
+#doc h2 strong { font-weight: 900; }
+#doc h3 {
+  font-family: var(--voice-2-mincho);
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  margin: 40px 0 16px;
+  color: var(--ink);
+  position: relative;
+  padding-left: 18px;
+}
+#doc h3::before {
+  content: ""; position: absolute; left: 0; top: 0.55em;
+  width: 8px; height: 8px;
+  background: var(--vermilion);
+}
+#doc p {
+  margin: 0 0 20px;
+  font-family: var(--voice-2-mincho);
+  font-size: 16px;
+  line-height: 2;
+}
+#doc strong { color: var(--vermilion); font-weight: 700; }
+#doc em { font-style: italic; }
+#doc a {
+  color: var(--indigo);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+#doc a:hover { color: var(--vermilion); }
+#doc ul, #doc ol {
+  margin: 0 0 24px;
+  padding-left: 24px;
+  font-family: var(--voice-2-mincho);
+  font-size: 16px;
+  line-height: 2;
+}
+#doc li { margin-bottom: 6px; }
+#doc hr {
+  border: 0;
+  border-top: var(--line-w) solid var(--ink);
+  margin: 48px 0;
+}
+#doc blockquote {
+  margin: 24px 0;
+  padding: 20px 24px;
+  border-left: 4px solid var(--vermilion);
+  background: rgba(229, 75, 42, 0.05);
+  font-family: var(--voice-2-mincho);
+  font-style: italic;
+  font-size: 17px;
+}
+#doc code {
+  font-family: var(--voice-3);
+  font-size: 0.9em;
+  background: rgba(26,26,24,0.08);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+/* table をモバイルで横スクロール可能に */
+#doc .table-wrap, #doc table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+#doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-family: var(--voice-2-gothic);
+  font-size: 14px;
+  border: var(--line-w) solid var(--ink);
+  white-space: nowrap;
+}
+#doc th, #doc td {
+  padding: 10px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(26,26,24,0.15);
+  border-right: 1px solid rgba(26,26,24,0.15);
+}
+#doc th {
+  background: var(--ink);
+  color: var(--crema);
+  font-family: var(--voice-3);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* doc loading */
+#doc.loading::before {
+  content: "loading…";
+  display: block;
+  font-family: var(--voice-3);
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.45;
+}
+
+/* doc footer */
+.doc-foot {
+  background: var(--ink);
+  color: var(--crema);
+  padding: 40px 28px;
+  font-family: var(--voice-3);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.doc-foot a { color: var(--crema); }
+.doc-foot a:hover { color: var(--vermilion); }
+@media (max-width: 720px) {
+  .doc-foot { flex-direction: column; gap: 16px; text-align: center; }
+  /* docbar 2行分の余白を含めて padding-top を厚めに */
+  .doc-wrap { padding: 56px 18px 100px; }
+  .draft-banner { padding: 8px 14px; font-size: 10px; letter-spacing: 0.18em; }
+  .doc-meta { font-size: 9.5px; letter-spacing: 0.22em; }
+  #doc { font-size: 15px; }
+  #doc p { font-size: 15px; line-height: 1.95; }
+  #doc h2 { margin: 48px 0 18px; padding-top: 18px; }
+  #doc h3 { margin: 32px 0 12px; }
+  #doc blockquote { padding: 14px 16px; font-size: 15px; }
+}

@@ -1,0 +1,37 @@
+/* ========== v1 tokens — 紙・墨・朱・燐光 ========== */
+:root {
+  --paper: #F0EBE0;
+  --paper-2: #E5DFD0;
+  --paper-3: #D9D2C0;
+  --ink: #0B0B0C;
+  --ink-2: #1A1A1C;
+  --ink-3: #2A2A2E;
+  --ash: #6B6961;
+  --ash-d: #888683;
+
+  --shu: #E63312;
+  --shu-d: #B92208;
+  --rin: #7CFFB0;
+  --aqua: #1FB8C2;
+
+  --f-serif: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  --f-sans:  "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Noto Sans JP", system-ui, sans-serif;
+  --f-mono:  "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --bd-thin: 1px solid color-mix(in oklab, var(--ink) 25%, transparent);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); }
+body {
+  font-family: var(--f-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  font-feature-settings: "palt" 1;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--shu); color: var(--paper); }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+.mono { font-family: var(--f-mono); }
+.serif { font-family: var(--f-serif); }

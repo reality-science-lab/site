@@ -15,7 +15,5 @@ _dump/
 # os
 .DS_Store
 
-# 現実科学研究所 (RSI) materials — colocated under this folder but kept OUT of this
-# PUBLIC repo: docs/ holds pre-launch confidential material (press releases, meeting
-# transcripts) and apps/lp/ is its own live repo (StudioSaitama-LLC/dhw-lab).
-/institute/
+# institute/ = 現実科学研究所 (RSI) 資材（docs + LP）をこの repo に統合管理。
+# 注意: docs にローンチ前資料を含むが、本 repo は public（ユーザー判断で当面 public 運用）。
