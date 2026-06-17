@@ -42,7 +42,13 @@ function walk(dir) {
   let n = 0;
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
     const p = path.join(dir, ent.name);
-    if (ent.isDirectory()) { n += walk(p); continue; }
+    if (ent.isDirectory()) {
+      // The embedded RSI LP is self-contained (no root-absolute refs); skip it to
+      // avoid both mangling it and scanning its 22MB bundle.
+      if (p.endsWith(path.join('institute', 'lp'))) continue;
+      n += walk(p);
+      continue;
+    }
     const ext = path.extname(ent.name).toLowerCase();
     if (ext !== '.html' && ext !== '.css') continue;
     const before = fs.readFileSync(p, 'utf8');

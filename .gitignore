@@ -12,6 +12,10 @@ _dump/
 .cache/
 *.log
 
+# RSI LP is published into the site at build time (scripts/embed-lp.mjs) from
+# institute/apps/lp/ — the generated copy must not be duplicated in git.
+/public/institute/
+
 # os
 .DS_Store
 
