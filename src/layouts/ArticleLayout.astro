@@ -41,6 +41,8 @@ const bodyClass = idSwap(bodyClassRaw.trim());
   <Fragment set:html={betweenSeriesTitle} />
   {title}
   <Fragment set:html={betweenTitleContent} />
-  <slot />
+  <div class="rs-article">
+    <slot />
+  </div>
   <Fragment set:html={afterContent} />
 </BaseLayout>

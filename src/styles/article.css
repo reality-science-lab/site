@@ -1,7 +1,15 @@
-/* 記事本文の可読性向上（UI/UX）。Elementor 単一投稿テンプレの本文枠に適用。
-   タイトル・シリーズ見出し等のテンプレ部分には影響させない。 */
-.elementor-widget-theme-post-content > .elementor-widget-container {
-  max-width: 780px;
+/* 記事本文の可読性・レイアウト（UI/UX）。Elementor 単一投稿テンプレの本文枠に適用。
+   タイトル・シリーズ見出し等のテンプレ部分には影響させない。
+   方針:
+   - 読みやすい中央寄せの本文カラム（max 820px）
+   - 画像は原寸尊重（拡大しない）・はみ出しは 100% で抑える
+   - 単独画像（<p><img></p> 例: 登壇者の顔写真・ロゴ）は左フロート → 右にテキストが回り込み
+     本番同等の「画像左・本文右」2カラムを再現
+   - リンク付き画像（<p><a><img></a></p> 例: Peatix バナー）は中央・大きめのまま
+   - スマホ幅では縦積みに切替 */
+
+.rs-article {
+  max-width: 820px;
   margin-inline: auto;
   font-size: 1.0625rem; /* ~17px */
   line-height: 1.95;
@@ -9,87 +17,83 @@
   letter-spacing: 0.01em;
   word-break: break-word;
 }
+.rs-article::after { content: ""; display: block; clear: both; } /* contain floats */
 
-.elementor-widget-theme-post-content p {
-  margin: 0 0 1.6em;
-}
+.rs-article p { margin: 0 0 1.6em; }
 
-.elementor-widget-theme-post-content h2 {
+.rs-article h2 {
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.5;
   margin: 2.6em 0 1em;
   padding-bottom: 0.4em;
   border-bottom: 2px solid #ececec;
+  clear: both; /* 新セクションはフロートをクリア */
 }
-.elementor-widget-theme-post-content h3 {
-  font-size: 1.2rem;
+.rs-article h3 {
+  font-size: 1.22rem;
   font-weight: 700;
   line-height: 1.5;
-  margin: 2.2em 0 0.8em;
+  margin: 0.2em 0 0.6em;
 }
-.elementor-widget-theme-post-content h4 {
-  font-size: 1.08rem;
-  font-weight: 700;
-  margin: 1.8em 0 0.6em;
-}
+.rs-article h4 { font-size: 1.08rem; font-weight: 700; margin: 1.8em 0 0.6em; }
 
-.elementor-widget-theme-post-content ul,
-.elementor-widget-theme-post-content ol {
-  margin: 0 0 1.6em;
-  padding-left: 1.6em;
-}
-.elementor-widget-theme-post-content li {
-  margin: 0.5em 0;
-  line-height: 1.85;
-}
+.rs-article ul,
+.rs-article ol { margin: 0 0 1.6em; padding-left: 1.6em; }
+.rs-article li { margin: 0.5em 0; line-height: 1.85; }
 
-.elementor-widget-theme-post-content a {
+.rs-article a {
   color: #1a4f8b;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.elementor-widget-theme-post-content a:hover {
-  color: #11365f;
-}
-.elementor-widget-theme-post-content strong {
-  font-weight: 700;
-}
+.rs-article a:hover { color: #11365f; }
+.rs-article strong { font-weight: 700; }
 
-/* 画像（バナー等）— 中央寄せ・角丸・前後の余白 */
-.elementor-widget-theme-post-content img {
-  max-width: 100%;
-  height: auto;
+/* 画像の既定: 原寸まで・拡大しない・はみ出さない */
+.rs-article img { max-width: 100%; height: auto; }
+
+/* 単独画像の段落（顔写真・ロゴ等）= 左フロートで本文が回り込む */
+.rs-article p:has(> img:only-child) {
+  float: left;
+  clear: left;
+  width: clamp(180px, 38%, 320px);
+  margin: 0.25em 1.8em 1em 0;
+}
+.rs-article p:has(> img:only-child) img {
   display: block;
-  margin: 1.8em auto;
+  width: 100%;
   border-radius: 6px;
 }
-.elementor-widget-theme-post-content a img {
-  margin: 0 auto;
-}
-.elementor-widget-theme-post-content figure {
+
+/* リンク付き画像（バナー等）= 中央・大きめ */
+.rs-article p:has(> a:only-child img) {
+  text-align: center;
   margin: 1.8em 0;
 }
-.elementor-widget-theme-post-content figcaption {
-  font-size: 0.85em;
-  color: #888;
-  text-align: center;
-  margin-top: 0.6em;
-}
+.rs-article p:has(> a:only-child img) img { border-radius: 6px; }
 
-.elementor-widget-theme-post-content blockquote {
+/* figure / caption */
+.rs-article figure { margin: 1.8em auto; text-align: center; }
+.rs-article figcaption { font-size: 0.85em; color: #888; text-align: center; margin-top: 0.6em; }
+
+.rs-article blockquote {
   margin: 1.8em 0;
   padding: 0.4em 1.2em;
   border-left: 4px solid #d8d8d8;
   color: #555;
+  clear: both;
 }
-.elementor-widget-theme-post-content iframe {
-  max-width: 100%;
-  display: block;
-  margin: 1.8em auto;
-}
-.elementor-widget-theme-post-content hr {
-  border: 0;
-  border-top: 1px solid #e5e5e5;
-  margin: 2.4em 0;
+.rs-article iframe { max-width: 100%; display: block; margin: 1.8em auto; clear: both; }
+.rs-article hr { border: 0; border-top: 1px solid #e5e5e5; margin: 2.4em 0; clear: both; }
+
+/* スマホ幅: フロート解除して縦積み（画像は中央・原寸まで） */
+@media (max-width: 640px) {
+  .rs-article p:has(> img:only-child) {
+    float: none;
+    width: auto;
+    margin: 1.4em auto;
+    text-align: center;
+  }
+  .rs-article p:has(> img:only-child) img { margin-inline: auto; }
 }
