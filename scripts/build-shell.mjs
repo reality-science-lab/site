@@ -55,6 +55,21 @@ function stripCurrentMarkers(html) {
     .replace(/\s*aria-current="[^"]*"/g, '');
 }
 
+// Add a nav link to the 現実科学研究所 (RSI) LP. The site (現実科学ラボ) links to the
+// institute LP served at /institute/lp/. Injected here so header regeneration keeps it.
+const INSTITUTE_NAV_LI =
+  '<li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="/institute/lp/" class="elementor-item">INSTITUTE</a></li>';
+function addInstituteNav(html) {
+  // after the LECTURE item in each top-level nav (LECTURE has no sub-menu)
+  return html.replace(/(<a [^>]*>LECTURE<\/a>\s*<\/li>)/g, '$1' + INSTITUTE_NAV_LI);
+}
+function addInstituteFooter(html) {
+  const link =
+    '<div class="elementor-element elementor-widget elementor-widget-heading" data-element_type="widget"><div class="elementor-widget-container"><a class="elementor-heading-title elementor-size-default" href="/institute/lp/">現実科学研究所 →</a></div></div>';
+  // insert just before the social-icons widget
+  return html.replace(/(<div class="elementor-element[^"]*elementor-widget-social-icons")/, link + '$1');
+}
+
 // --- head pieces -------------------------------------------------------------
 function bodyClass(html) {
   const m = html.match(/<body[^>]*class="([^"]+)"/);
@@ -101,9 +116,9 @@ fs.writeFileSync(path.join(OUT, 'head-links.html'), headLinks + '\n');
 
 // 2) header variants + footer. Inner header is taken from the article page (a
 // neutral page that highlights no menu item); current-page markers are stripped.
-fs.writeFileSync(path.join(OUT, 'header-home.html'), clean(stripCurrentMarkers(elementorBlock(home, 'header'))) + '\n');
-fs.writeFileSync(path.join(OUT, 'header-inner.html'), clean(stripCurrentMarkers(elementorBlock(article, 'header'))) + '\n');
-fs.writeFileSync(path.join(OUT, 'footer.html'), clean(elementorBlock(home, 'footer')) + '\n');
+fs.writeFileSync(path.join(OUT, 'header-home.html'), addInstituteNav(clean(stripCurrentMarkers(elementorBlock(home, 'header')))) + '\n');
+fs.writeFileSync(path.join(OUT, 'header-inner.html'), addInstituteNav(clean(stripCurrentMarkers(elementorBlock(article, 'header')))) + '\n');
+fs.writeFileSync(path.join(OUT, 'footer.html'), addInstituteFooter(clean(elementorBlock(home, 'footer'))) + '\n');
 
 // 3) scripts partial (from home; same set on every page)
 fs.writeFileSync(path.join(OUT, 'scripts.html'), clean(bodyScripts(home).join('\n')) + '\n');
