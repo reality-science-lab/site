@@ -32,11 +32,15 @@ node scripts/new-article.mjs <slug> "<タイトル>" <カテゴリ,カテゴリ>
 - `# featured_image: "…"`（パスが書かれた1行）の先頭 `#` だけを外し、置いた画像名にする（例 `/wp-content/uploads/2026/08/<slug>.jpg`）。説明文のコメント行は残す。
 - 本文を Markdown で記述。本文画像は `![alt](/wp-content/uploads/YYYY/MM/ファイル名)`、YouTube 等は `<iframe>` 生 HTML 可。
 
-### 5. プレビューで確認する
+### 5. ローカルで起動してプレビューする
 ```bash
-npm run dev        # http://localhost:4321/ で確認（記事の見た目はこれで十分）
+npm run dev -- --host    # http://localhost:4321/
 ```
-HOME 先頭の NEWS / LECTURE グリッド / NEXT LECTURE に新記事が反映されること、記事ページが開けることを確認。公開前の最終チェックには `npm run build`（HOME 差し替えの anchor 検証も兼ねる。落ちたら出荷しない）。
+ブラウザで、scaffolder が表示した **permalink**（例 `http://localhost:4321/2026/08/<slug>/`）を開く。
+- **必ず `--host` を付ける。** 付けないと dev サーバーが IPv6 の `[::1]` だけに bind され、ブラウザが `localhost` を IPv4(127.0.0.1) で引く環境では「接続拒否＝ローカルで見れない」になる。`--host` で全インターフェースに bind されて確実に開ける。
+- **プレビューしたい間だけ frontmatter の `draft` を `false` にする。** `draft: true` の記事は本番と同じく一覧にもページにも出ない（プレビュー後、公開しないなら `true` に戻す）。
+- HOME 先頭の **NEWS / LECTURE グリッド / NEXT LECTURE** に新記事が出ること、記事ページが開けることを確認する。
+- 公開前の最終チェックには `npm run build`（HOME 差し替えの anchor 検証も兼ねる。落ちたら出荷しない）。
 
 ### 6. 公開する（PR 経由・main 直 push 禁止）
 `draft: true` を削除（または `false`）してから:

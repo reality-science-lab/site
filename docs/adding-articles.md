@@ -60,17 +60,21 @@ node scripts/new-article.mjs vol-74 "Vol.74 ○○さんレクチャー（2026/8
 - frontmatter で、**`# featured_image: "…"` の行（パスが書かれた1行）の先頭 `#` だけを外し**、ファイル名を実際に置いた画像に書き換える（説明文のコメント行はそのまま）。これが HOME と一覧カード・OGP のサムネになる。
 - 本文を Markdown で記述。画像は `![代替テキスト](/wp-content/uploads/2026/08/ファイル名.jpg)`、YouTube などの埋め込みは `<iframe …></iframe>` をそのまま貼ってよい。
 
-### 4. プレビューで確認する
+### 4. ローカルで起動してプレビューで確認する
 
 ```bash
-npm run dev     # http://localhost:4321/ で確認（編集が即反映）。記事の確認はこれで十分
+npm run dev -- --host    # http://localhost:4321/ で確認（編集が即反映）
 ```
 
 （初回で `astro が無い` 等のエラーが出たら `npm install` がまだ。先に実行する。）
 
-HOME 先頭の **NEWS / LECTURE グリッド / NEXT LECTURE** に新記事が出ること、記事ページが開けることを見る。
+ブラウザで、step 1 の scaffolder が表示した **permalink**（例 `http://localhost:4321/2026/08/<slug>/`）を開く。
 
-公開前に本番と同じ生成で最終チェックしたい場合のみ `npm run build` を回す（研究所 LP 素材 `institute/apps/lp/` を同梱する都合で、それが無い環境では警告が出ることがあるが記事の可否とは無関係）。
+- **`--host` を付ける。** 付けないと dev サーバーが IPv6 の `[::1]` だけに bind され、`localhost` を IPv4(127.0.0.1) で引くブラウザからは「接続拒否」で開けないことがある。`--host` を付ければ全インターフェースに bind されて確実に開ける。
+- **プレビューしたい間だけ `draft: false` にする。** `draft: true` の記事は本番と同じく一覧にもページにも出ない（見終わって公開しないなら `true` に戻す）。
+- HOME 先頭の **NEWS / LECTURE グリッド / NEXT LECTURE** に新記事が出ること、記事ページが開けることを見る。
+
+公開前に本番と同じ生成で最終チェックしたい場合は `npm run build` を回す（研究所 LP 素材 `institute/apps/lp/` を同梱する都合で、それが無い環境では警告が出ることがあるが記事の可否とは無関係）。
 
 ### 5. 公開する（main 直 push は禁止 → ブランチ + PR）
 
