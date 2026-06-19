@@ -83,4 +83,4 @@
 
 - まずこのマニュアルと [記事の追加方法](adding-articles.md) を確認。
 - 解決しない、または**固定デザイン・LP のバージョン切替・ドメイン切替**など Markdown で完結しない変更は **@Chiaki / 開発** へ。
-- Claude Code を使う人は、リポジトリ同梱スキル **`/add-article`** が記事追加を案内します。技術的な決まりは [`CLAUDE.md`](../CLAUDE.md) を参照。
+- Claude Code を使う人は、リポジトリ同梱スキル **`/onboard`**（初回セットアップ＋**作業開始時の同期チェック**）と **`/add-article`**（記事追加）が案内します。Claude 運用のルールは [Claude で運用するルール](working-with-claude.md)、技術的な決まりは [`CLAUDE.md`](../CLAUDE.md) を参照。

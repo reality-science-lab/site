@@ -4,6 +4,14 @@ WordPress + Elementor の「現実科学ラボ」(reality-science.com) を **Ast
 
 ---
 
+## 作業を始めるとき（最初に同期チェック）
+
+複数人が触る repo。**作業を始める前に必ずローカルがリモートの最新かを確認する**（古いまま作業すると競合・手戻り）。
+- `git fetch origin` → `git status -sb`。クリーンで遅れていれば `git pull --ff-only`。
+- 未コミットの変更・未プッシュのコミット・作業ブランチ・オープン PR があれば、**勝手に捨てず**内容を要約して報告し、続き／コミット／破棄を確認する。
+- 「`main` が最新・クリーン」を確認してからブランチを切る（`main` 直 push 禁止）。
+- メンバー向けの導入・運用ルールは Claude Code の **`/onboard` スキル**と **[docs/working-with-claude.md](docs/working-with-claude.md)**（モデル選択・GitHub 認証・公開の安全弁など）。
+
 ## 記事に関する操作（最重要）
 
 **記事を追加・編集するときは、手で作らず必ず決まった入口を通す。**

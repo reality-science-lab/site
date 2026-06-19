@@ -64,6 +64,7 @@ npm run dev
 
 - **記事を追加してみる** → [記事の追加方法](adding-articles.md)（雛形コマンド1つから）
 - **運用全体（記事の修正・写真・資材・公開確認・困ったとき）** → [運用マニュアル](operations.md)
+- **Claude Code / Codex で進める人** → [Claude で運用するルール](working-with-claude.md)。Claude Code なら `/onboard` スキルが、初回セットアップと**毎回の作業開始時の同期チェック（リモートの最新と揃っているか確認）**まで案内します。
 
 ## 用語ミニ辞典
 
