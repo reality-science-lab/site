@@ -72,3 +72,23 @@ v6 と同じブレークポイントを継承（900 / 860 / 820 / 760px）。追
 ## ソース
 
 `/Users/chiakikato/Downloads/現実科学研究所 LP（standalone） (2).html`（2026-06-09 15:44 受領）
+
+## 配信時のフラット化（2026-06-19）
+
+この `index.html` は **rehydration 形式**（`<body>` 先頭の `#__bundler_thumbnail` を出してから
+`<script type="__bundler/manifest">` の ~22MB を読んで本物のページを DOM 再構築する Claude Design
+の standalone 形式）。このため `/institute/lp/` の**初回表示で thumbnail がスプラッシュのように
+出てしまう**。
+
+元の Claude Design プロジェクトが消失し再エクスポートできないため、**build 時に
+`scripts/flatten-lp.mjs` で静的フラット HTML に変換して配信**する（`scripts/embed-lp.mjs` が
+bundler 形式を検知して自動でフラット化）。変換はデザイン内容を変えず、
+
+- `__bundler/template` の本番 HTML を取り出し、`url("<uuid>")` を `__bundler/manifest` の
+  アセットの `data:` URI に置換、
+- フォントの `@font-face`（~23.7MB）を `<head>` から `</body>` 直前へ移動（head を軽くして
+  本文を即描画、フォントは `font-display: swap` で後差し替え）、
+- `#__bundler_thumbnail` を除去。
+
+フラット版は巨大なため git にはコミットせず、build のたびに v7 から生成する
+（`public/institute/lp/` は gitignored）。
