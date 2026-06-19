@@ -39,7 +39,8 @@ npm run dev -- --host    # http://localhost:4321/
 ブラウザで、scaffolder が表示した **permalink**（例 `http://localhost:4321/2026/08/<slug>/`）を開く。
 - **必ず `--host` を付ける。** 付けないと dev サーバーが IPv6 の `[::1]` だけに bind され、ブラウザが `localhost` を IPv4(127.0.0.1) で引く環境では「接続拒否＝ローカルで見れない」になる。`--host` で全インターフェースに bind されて確実に開ける。
 - **プレビューしたい間だけ frontmatter の `draft` を `false` にする。** `draft: true` の記事は本番と同じく一覧にもページにも出ない（プレビュー後、公開しないなら `true` に戻す）。
-- HOME 先頭の **NEWS / LECTURE グリッド / NEXT LECTURE** に新記事が出ること、記事ページが開けることを確認する。
+- HOME 先頭の **NEWS / LECTURE グリッド / NEXT LECTURE** に新記事が出ること、記事ページが開けることを確認する。これら3領域はコレクション駆動で**記事を1枚足すだけで自動更新される**（NEWS=公開日順4件 / LECTURE グリッド=`event` の開催日降順3件 / NEXT LECTURE=今日以降で最も近い開催。並び順は `src/lib/posts.ts`、差し込みは `src/pages/index.astro`）。
+- **dev サーバーを起動したまま記事を足すと、HOME の3領域がホットリロードに乗らず古い表示が残ることがある**（NEWS だけ更新されてグリッドが旧 Vol のまま、等）。記事ファイルは `index.astro` の import 対象ではなくビルド時に collection から差し込まれるため、HMR が部分的にしか効かない。**HOME の3領域を確認するときは dev サーバーを再起動する**（記事ページ単体のプレビューは再起動不要）。確実なのは次の `npm run build`（常に全領域を再計算する）。
 - 公開前の最終チェックには `npm run build`（HOME 差し替えの anchor 検証も兼ねる。落ちたら出荷しない）。
 
 ### 6. 公開する（PR 経由・main 直 push 禁止）
