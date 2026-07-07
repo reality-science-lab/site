@@ -21,7 +21,7 @@
 ```
 
 - 記事を1本足すと、**記事ページ・一覧・トップページ（NEWS / NEXT LECTURE / レクチャー一覧）まで自動で更新**されます。手で複数箇所を直す必要はありません。
-- 公開先（現時点）: **https://studiosaitama-llc.github.io/reality-science-site/** （将来 reality-science.com に切替予定）
+- 公開先（現時点）: **https://reality-science-lab.github.io/site/** （将来 reality-science.com に切替予定）
 
 ## 必要なもの（最初に揃える）
 
@@ -40,8 +40,8 @@
 
 ```bash
 # 1. リポジトリを取得（公開なので鍵は不要）
-git clone https://github.com/StudioSaitama-LLC/reality-science-site.git
-cd reality-science-site
+git clone https://github.com/reality-science-lab/site.git
+cd site
 
 # 2. 必要部品をインストール
 npm install
@@ -50,7 +50,7 @@ npm install
 gh auth login
 ```
 
-以降のコマンドは、すべて `reality-science-site` フォルダの中で実行します。
+以降のコマンドは、すべて `site` フォルダの中で実行します。
 
 ## 動かしてみる
 

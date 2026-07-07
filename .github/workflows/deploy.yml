@@ -29,8 +29,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # Project-page (github.io/reality-science-site/) build: root-absolute paths get
-      # the /reality-science-site base prefix. For custom-domain cutover at root, switch this
+      # Project-page (github.io/site/) build: root-absolute paths get
+      # the /site base prefix. For custom-domain cutover at root, switch this
       # to `npm run build` and add public/CNAME.
       - run: npm run build:pages
       - uses: actions/upload-pages-artifact@v3

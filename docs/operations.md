@@ -48,11 +48,11 @@
 - LP の中身は **`institute/apps/lp/`**。**公開されているのは `v7`**（ビルド時に `scripts/embed-lp.mjs` が `v7` を `/institute/lp/` へコピーして配信）。
 - **公開中の LP の文言・画像を直す** → `institute/apps/lp/v7/` の中身を編集して PR。
 - **新しいバージョン（v8 など）に切り替えて公開する** → 版を足したうえで `embed-lp.mjs` の参照版を変える小さなコード変更が必要。**@Chiaki / 開発に依頼**。
-- 公開 URL: `…/reality-science-site/institute/lp/`
+- 公開 URL: `…/site/institute/lp/`
 
 ### ✅ 公開されたか確認する
 1. PR がマージされると、GitHub の **Actions タブ**でビルドが走る（緑のチェックで成功）。
-2. 数分後、ライブ URL（https://studiosaitama-llc.github.io/reality-science-site/ ）を**スーパーリロード**して確認。
+2. 数分後、ライブ URL（https://reality-science-lab.github.io/site/ ）を**スーパーリロード**して確認。
 3. **画像の確認は必ずライブ URL で**（ローカルで見えても本番で出ないケースがあるため。下記）。
 
 ---

@@ -1,6 +1,6 @@
 # Claude Code で運用するメンバーのルール
 
-現実科学ラボのサイト(reality-science-site)を **Claude Code / Codex 経由で**運用する人向けのルール正本。手順を自動で誘導してほしいときは Claude Code 同梱の **`/onboard` スキル**（初回セットアップ＋作業開始の同期チェック）と **`/add-article` スキル**（記事追加）を使う。Markdown を手で書く前提の全体像は [導入ガイド](getting-started.md) / [運用マニュアル](operations.md) を参照。
+現実科学ラボのサイト(reality-science-lab/site)を **Claude Code / Codex 経由で**運用する人向けのルール正本。手順を自動で誘導してほしいときは Claude Code 同梱の **`/onboard` スキル**（初回セットアップ＋作業開始の同期チェック）と **`/add-article` スキル**（記事追加）を使う。Markdown を手で書く前提の全体像は [導入ガイド](getting-started.md) / [運用マニュアル](operations.md) を参照。
 
 このルールは 2026-06-19 の定例で、実際に複数メンバーがセットアップ〜公開を実演し、**詰まった箇所**を元に作っている。
 
@@ -50,7 +50,7 @@ gh pr list --state open   # オープン PR の確認
 
 - push / PR で **権限エラー（403）が出るのは想定どおり**。GitHub CLI (`gh`) が要る: `brew install gh` → `gh auth login`（web browser / device flow）。
 - ⚠️ **パスワード入力は画面共有を止めてから**（ターミナルにも出得る）。
-- **org メンバー**（StudioSaitama-LLC、将来デジハリ org）は基本この認証なしで通る。**repo 単位の協力者だけ** `gh` 認証が必要。
+- **org メンバー**（reality-science-lab、将来デジハリ org）は基本この認証なしで通る。**repo 単位の協力者だけ** `gh` 認証が必要。
 - **外部ライター**には org 権限を渡さない。`.md` を受け取って管理者が上げる運用でよい。
 
 ---

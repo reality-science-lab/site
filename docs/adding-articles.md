@@ -8,8 +8,8 @@
 
 ```bash
 # 公開リポジトリなので HTTPS でそのまま clone できる（SSH 鍵は不要）
-git clone https://github.com/StudioSaitama-LLC/reality-science-site.git
-cd reality-science-site
+git clone https://github.com/reality-science-lab/site.git
+cd site
 npm install
 ```
 
@@ -20,7 +20,7 @@ brew install gh      # macOS。他環境は https://cli.github.com/
 gh auth login        # ブラウザでログイン（一度だけ）
 ```
 
-> SSH 鍵を GitHub に登録済みなら `git@github.com:StudioSaitama-LLC/reality-science-site.git` でも clone 可。`gh` を入れない場合は、後述のとおり push 後にブラウザで PR を作ってもよい。
+> SSH 鍵を GitHub に登録済みなら `git@github.com:reality-science-lab/site.git` でも clone 可。`gh` を入れない場合は、後述のとおり push 後にブラウザで PR を作ってもよい。
 
 以降のコマンドはすべて **このフォルダ（`package.json` のある場所）** で実行する。
 
@@ -89,7 +89,7 @@ git push -u origin post/vol-74
 gh pr create --fill        # GitHub 上で PR を作る
 ```
 
-> `gh` を入れていない場合は、`git push` 後にターミナルに出る `https://github.com/StudioSaitama-LLC/reality-science-site/pull/new/post/vol-74` をブラウザで開けば PR を作れる。
+> `gh` を入れていない場合は、`git push` 後にターミナルに出る `https://github.com/reality-science-lab/site/pull/new/post/vol-74` をブラウザで開けば PR を作れる。
 
 PR が **main にマージされると GitHub Actions が自動でビルド & デプロイ**する。これで完了。
 

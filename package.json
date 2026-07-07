@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "node scripts/embed-lp.mjs && astro build",
-    "build:pages": "node scripts/embed-lp.mjs && SITE_ORIGIN=https://studiosaitama-llc.github.io BASE_PATH=/reality-science-site astro build && node scripts/rebase.mjs reality-science-site",
+    "build:pages": "node scripts/embed-lp.mjs && SITE_ORIGIN=https://reality-science-lab.github.io BASE_PATH=/site astro build && node scripts/rebase.mjs site",
     "preview": "astro preview",
     "check": "astro check",
     "migrate:posts": "node scripts/migrate-posts.mjs",

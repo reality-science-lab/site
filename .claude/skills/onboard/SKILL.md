@@ -1,13 +1,13 @@
 ---
 name: onboard
-description: 現実科学ラボのサイト(reality-science-site)を Claude Code/Codex で触るメンバー向けの導入＆作業開始ガイド。初回セットアップ（クローン／GitHub 認証／モデル選択）と、毎回の作業開始時にローカルがリモートの最新と揃っているかを確認する同期チェックを、誰がやっても同じ手順で誘導する。「セットアップ」「環境構築」「作業を始める」「最新にする」「リモートと同期」「クローンして始めたい」等で使う。
+description: 現実科学ラボのサイト(reality-science-lab/site)を Claude Code/Codex で触るメンバー向けの導入＆作業開始ガイド。初回セットアップ（クローン／GitHub 認証／モデル選択）と、毎回の作業開始時にローカルがリモートの最新と揃っているかを確認する同期チェックを、誰がやっても同じ手順で誘導する。「セットアップ」「環境構築」「作業を始める」「最新にする」「リモートと同期」「クローンして始めたい」等で使う。
 ---
 
 # 現実科学ラボ サイト — メンバー導入＆作業開始ガイド
 
 このスキルは、参画メンバーが **Claude Code（または Codex）に話しかけるだけ**で、迷わず「最新の状態で作業を始める→記事を出す」までいけるように誘導する。人間向けの読み物は [docs/working-with-claude.md](../../../docs/working-with-claude.md)（ルール正本）と [docs/getting-started.md](../../../docs/getting-started.md)。
 
-リポジトリ: `https://github.com/StudioSaitama-LLC/reality-science-site`（公開）。作業はクローンしたフォルダ（`package.json` がある所）の中で行う。
+リポジトリ: `https://github.com/reality-science-lab/site`（公開）。作業はクローンしたフォルダ（`package.json` がある所）の中で行う。
 
 ## まず伝える3つの合言葉（毎回これで突破できる）
 
@@ -28,14 +28,14 @@ description: 現実科学ラボのサイト(reality-science-site)を Claude Code
 
 ### 1. クローンする
 - ユーザーに置き場所（どのフォルダに置くか）を確認してから、リポジトリ URL を `git clone` する。**同名フォルダの二重作成に注意**（既に同名フォルダがあるとネストして「2つできた」状態になりやすい）。
-- 落ちてきた `reality-science-site/`（`package.json` がある所）が作業ルート。Claude Code/Codex でそのフォルダを開く。
+- 落ちてきた `site/`（`package.json` がある所）が作業ルート。Claude Code/Codex でそのフォルダを開く。
 - `npm install` を実行（プレビュー・ビルドに必要）。
 
 ### 2. GitHub 認証（push できるようにする）
 - push や PR 作成で **権限エラー（403）が出るのは想定どおり**。`gh`（GitHub CLI）が要る。
 - 手順: `brew install gh` → `gh auth login`（"Login with a web browser" を選ぶ）→ ブラウザでデバイスコードを入力 → 端末と GitHub アカウントが紐づく。
 - ⚠️ **パスワード入力（Mac のパスワード等）は画面共有を止めてから。** 共有中はターミナルにも表示され得る。
-- 補足: StudioSaitama-LLC（将来はデジハリ org）の org メンバーは基本この認証なしで通る。**repo 単位の協力者だけ** `gh` 認証が要る。外部ライターには org 権限を渡さず、`.md` を受け取って管理者が上げる運用でもよい。
+- 補足: reality-science-lab（将来はデジハリ org）の org メンバーは基本この認証なしで通る。**repo 単位の協力者だけ** `gh` 認証が要る。外部ライターには org 権限を渡さず、`.md` を受け取って管理者が上げる運用でもよい。
 
 ### 3. モデル／エフォートを上げておく
 - 最初は **Opus Mid 以上**にしておく。記事追加のように `add-article` スキルで手順が固いタスクは軽いモデルでも通るが、セットアップ中は上げておくのが安全。
