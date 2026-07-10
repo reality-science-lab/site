@@ -15,19 +15,28 @@
 <p><span style="font-weight: 400;">現実科学ラボに関する問い合わせは下記フォームからお願いします。</span></p>
 <p>&nbsp;</p>
 <div role="form" class="rs-contact" id="rs-contact-f57" lang="ja" dir="ltr">
-<form id="rsContactForm" class="wpcf7-form" novalidate="novalidate">
-<p><label> お名前 (必須)<br />
-    <span class="wpcf7-form-control-wrap your-name"><input type="text" name="name" value="" size="40" class="wpcf7-form-control wpcf7-text" required aria-required="true" /></span> </label></p>
-<p><label> メールアドレス (必須)<br />
-    <span class="wpcf7-form-control-wrap your-email"><input type="email" name="email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email" required aria-required="true" /></span> </label></p>
-<p><label> 題名<br />
-    <span class="wpcf7-form-control-wrap your-subject"><input type="text" name="subject" value="" size="40" class="wpcf7-form-control wpcf7-text" /></span> </label></p>
-<p><label> メッセージ本文<br />
-    <span class="wpcf7-form-control-wrap your-message"><textarea name="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea"></textarea></span> </label></p>
+<div class="elementor-widget elementor-widget-form"><div class="elementor-widget-container">
+<form id="rsContactForm" class="elementor-form" method="post" name="Contact Form">
+<div class="elementor-form-fields-wrapper elementor-labels-above">
+<div class="elementor-field-type-text elementor-field-group elementor-column elementor-col-100 elementor-field-required">
+<label for="rs-f-name" class="elementor-field-label">お名前（必須）</label>
+<input size="1" type="text" name="name" id="rs-f-name" class="elementor-field elementor-size-md elementor-field-textual" placeholder="お名前" required="required" aria-required="true"></div>
+<div class="elementor-field-type-email elementor-field-group elementor-column elementor-col-100 elementor-field-required">
+<label for="rs-f-email" class="elementor-field-label">Email（必須）</label>
+<input size="1" type="email" name="email" id="rs-f-email" class="elementor-field elementor-size-md elementor-field-textual" placeholder="name@reality-science.com" required="required" aria-required="true"></div>
+<div class="elementor-field-type-text elementor-field-group elementor-column elementor-col-100">
+<label for="rs-f-subject" class="elementor-field-label">題名</label>
+<input size="1" type="text" name="subject" id="rs-f-subject" class="elementor-field elementor-size-md elementor-field-textual" placeholder="お問い合わせの件名"></div>
+<div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-col-100 elementor-field-required">
+<label for="rs-f-message" class="elementor-field-label">Message（必須）</label>
+<textarea class="elementor-field-textual elementor-field elementor-size-md" name="message" id="rs-f-message" rows="6" placeholder="メッセージをご入力ください" required="required" aria-required="true"></textarea></div>
 <input type="hidden" name="_source" value="トップページ CONTACT" />
-<p><input type="submit" value="送信" class="wpcf7-form-control wpcf7-submit" /></p>
+<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
+<button type="submit" class="elementor-button elementor-size-lg"><span><span class="elementor-button-text">送信する</span></span></button></div>
+</div>
+</form>
 <p class="rs-contact-sent" id="rsContactMsg" hidden>送信しました。お問い合わせありがとうございます。</p>
-</form></div>
+</div></div></div>
 <script>
 (function () {
   var f = document.getElementById("rsContactForm");
