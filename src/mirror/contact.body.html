@@ -14,27 +14,41 @@
 <h1>お問い合わせ</h1>
 <p><span style="font-weight: 400;">現実科学ラボに関する問い合わせは下記フォームからお願いします。</span></p>
 <p>&nbsp;</p>
-<div role="form" class="wpcf7" id="wpcf7-f57-p9-o2" lang="ja" dir="ltr">
-<div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
-<form action="/contact/#wpcf7-f57-p9-o2" method="post" class="wpcf7-form init" novalidate="novalidate" data-status="init">
-<div style="display: none;">
-<input type="hidden" name="_wpcf7" value="57" />
-<input type="hidden" name="_wpcf7_version" value="5.4.2" />
-<input type="hidden" name="_wpcf7_locale" value="ja" />
-<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f57-p9-o2" />
-<input type="hidden" name="_wpcf7_container_post" value="9" />
-<input type="hidden" name="_wpcf7_posted_data_hash" value="" />
-</div>
+<div role="form" class="rs-contact" id="rs-contact-f57" lang="ja" dir="ltr">
+<form id="rsContactForm" class="wpcf7-form" novalidate="novalidate">
 <p><label> お名前 (必須)<br />
-    <span class="wpcf7-form-control-wrap your-name"><input type="text" name="your-name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" /></span> </label></p>
+    <span class="wpcf7-form-control-wrap your-name"><input type="text" name="name" value="" size="40" class="wpcf7-form-control wpcf7-text" required aria-required="true" /></span> </label></p>
 <p><label> メールアドレス (必須)<br />
-    <span class="wpcf7-form-control-wrap your-email"><input type="email" name="your-email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" /></span> </label></p>
+    <span class="wpcf7-form-control-wrap your-email"><input type="email" name="email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email" required aria-required="true" /></span> </label></p>
 <p><label> 題名<br />
-    <span class="wpcf7-form-control-wrap your-subject"><input type="text" name="your-subject" value="" size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" /></span> </label></p>
+    <span class="wpcf7-form-control-wrap your-subject"><input type="text" name="subject" value="" size="40" class="wpcf7-form-control wpcf7-text" /></span> </label></p>
 <p><label> メッセージ本文<br />
-    <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false"></textarea></span> </label></p>
+    <span class="wpcf7-form-control-wrap your-message"><textarea name="message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea"></textarea></span> </label></p>
+<input type="hidden" name="_source" value="トップページ CONTACT" />
 <p><input type="submit" value="送信" class="wpcf7-form-control wpcf7-submit" /></p>
-<div class="wpcf7-response-output" aria-hidden="true"></div></form></div>
+<p class="rs-contact-sent" id="rsContactMsg" hidden>送信しました。お問い合わせありがとうございます。</p>
+</form></div>
+<script>
+(function () {
+  var f = document.getElementById("rsContactForm");
+  if (!f) return;
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    var btn = f.querySelector('[type="submit"]');
+    if (btn) btn.disabled = true;
+    fetch("https://script.google.com/macros/s/AKfycbxTKoGPg1NE3kc8xbmjHz4QBx9VLU1ZGyJ07Tol5VJ5hkqTx4-GN2n_TigZLm8MeDa8/exec", {
+      method: "POST", mode: "no-cors", body: new FormData(f)
+    }).then(function () {
+      var m = document.getElementById("rsContactMsg"); if (m) m.hidden = false;
+      f.reset();
+    }).catch(function () {
+      if (btn) btn.disabled = false;
+      alert("送信に失敗しました。時間をおいて再度お試しください。");
+    });
+  });
+})();
+</script>
 
 
 		</div>
