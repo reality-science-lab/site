@@ -22,5 +22,8 @@ _dump/
 # large local archives, not for git
 *.zip
 
+# 記事作成の作業用素材（Peatix HTML ダンプ等）。公開サイトには含めない。
+/asset/
+
 # institute/ = 現実科学研究所 (RSI) 資材（docs + LP）をこの repo に統合管理。
 # 注意: docs にローンチ前資料を含むが、本 repo は public（ユーザー判断で当面 public 運用）。
