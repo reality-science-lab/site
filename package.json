@@ -6,8 +6,8 @@
   "description": "現実科学ラボ (reality-science.com) — 静的サイト + Markdown 記事システム",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/embed-lp.mjs && astro build",
-    "build:pages": "node scripts/embed-lp.mjs && SITE_ORIGIN=https://reality-science-lab.github.io BASE_PATH=/site astro build && node scripts/rebase.mjs site",
+    "build": "node scripts/embed-lp.mjs && astro build && node scripts/build-sample.mjs",
+    "build:pages": "node scripts/embed-lp.mjs && SITE_ORIGIN=https://reality-science-lab.github.io BASE_PATH=/site astro build && node scripts/build-sample.mjs && node scripts/rebase.mjs site",
     "preview": "astro preview",
     "check": "astro check",
     "migrate:posts": "node scripts/migrate-posts.mjs",
