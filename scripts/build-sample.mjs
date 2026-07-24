@@ -283,10 +283,6 @@ function transformSampleTree(directory) {
 
 const transformed = transformSampleTree(SAMPLE_DIR);
 
-// The merged lecture source is an implementation detail for /sample/. Remove
-// its root build output so the current public URL structure does not change.
-fs.rmSync(path.join(DIST, 'lecture'), { recursive: true, force: true });
-
 console.log(
   `built unlisted preview at ${SAMPLE_PATH}/ (${transformed} HTML/CSS files transformed)`
 );
