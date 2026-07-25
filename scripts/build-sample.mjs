@@ -39,6 +39,7 @@ fs.mkdirSync(SAMPLE_DIR, { recursive: true });
 
 const excludedRootEntries = new Set([
   SAMPLE_PATH.slice(1),
+  'sample-lecture',
   'institute',
   'CNAME',
   '.nojekyll',
@@ -49,6 +50,13 @@ for (const entry of fs.readdirSync(DIST, { withFileTypes: true })) {
   const source = path.join(DIST, entry.name);
   const destination = path.join(SAMPLE_DIR, entry.name);
   fs.cpSync(source, destination, { recursive: entry.isDirectory() });
+}
+
+// Keep the published /lecture/ archive unchanged, but use the dedicated
+// merged route as the preview's /sample/lecture/ page.
+const mergedLecture = path.join(DIST, 'sample-lecture');
+if (fs.existsSync(mergedLecture)) {
+  fs.cpSync(mergedLecture, path.join(SAMPLE_DIR, 'lecture'), { recursive: true });
 }
 
 let home = readLp('index.html');
@@ -97,6 +105,13 @@ function rewriteReferences(content, isCss) {
   let rewritten = content.replace(
     new RegExp(`${PRODUCTION_ORIGIN.replaceAll('.', '\\.')}\\/(?!${sampleSegment}(?:\\/|$))`, 'g'),
     `${SAMPLE_ORIGIN}/`
+  );
+
+  // The temporary Astro route is copied to the public preview route below.
+  // Keep canonical and Open Graph URLs aligned with the URL users actually visit.
+  rewritten = rewritten.replaceAll(
+    `${SAMPLE_ORIGIN}/sample-lecture/`,
+    `${SAMPLE_ORIGIN}/lecture/`
   );
 
   if (isCss) {
@@ -282,6 +297,10 @@ function transformSampleTree(directory) {
 }
 
 const transformed = transformSampleTree(SAMPLE_DIR);
+
+// The merged preview source is an implementation detail and must not become
+// a second public root URL in the production artifact.
+fs.rmSync(path.join(DIST, 'sample-lecture'), { recursive: true, force: true });
 
 console.log(
   `built unlisted preview at ${SAMPLE_PATH}/ (${transformed} HTML/CSS files transformed)`
