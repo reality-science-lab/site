@@ -17,7 +17,8 @@ const grid = lectures.slice(0, 3); // LECTURE SERIES グリッド3件
 const now = new Date();
 const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
 const upcoming = lectures.filter((l) => l.sortKey >= todayUTC).sort((a, b) => a.sortKey - b.sortKey);
-const next: CardItem | undefined = upcoming[0] ?? lectures[0];
+// Vol.74 is the currently promoted NEXT LECTURE on HOME.
+const next: CardItem | undefined = lectures.find((lecture) => lecture.url.endsWith('/vol-74/')) ?? upcoming[0] ?? lectures[0];
 
 // テキスト・属性値の両方に使う最小エスケープ（& < > " ）。タイトルだけでなく
 // href/src/slug にも適用して、frontmatter 由来の & や " で markup が壊れないようにする。
