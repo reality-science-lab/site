@@ -132,7 +132,10 @@ const ogImageUrl = ogImage
         t.setAttribute('aria-expanded', on ? 'true' : 'false');
         var icon = t.querySelector('i');
         if (icon) icon.className = on ? 'eicon-close' : 'eicon-menu-bar';
-        var dd = t.parentElement && t.parentElement.querySelector('.elementor-nav-menu--dropdown');
+        // Scope to the top-level dropdown nav specifically — a plain
+        // `.elementor-nav-menu--dropdown` query also matches a CONTACT
+        // sub-menu <ul> that shares the class, toggling the wrong element.
+        var dd = t.parentElement && t.parentElement.querySelector('.elementor-nav-menu--dropdown.elementor-nav-menu__container');
         if (dd) {
           dd.setAttribute('aria-hidden', on ? 'false' : 'true');
           dd.style.display = on ? 'block' : 'none';
