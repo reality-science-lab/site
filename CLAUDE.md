@@ -23,7 +23,7 @@ WordPress + Elementor の「現実科学ラボ」(reality-science.com) を **Ast
 
 ## HOME は現実科学研究所LP、LECTUREがラボの旧HOME相当（自動生成・忠実ミラー）
 
-- **`/` と `/manifest/` は `institute/apps/lp/v7`（現実科学研究所LP）が source**。`scripts/build-home.mjs` が astro build 後に流し込む（`npm run build`/`build:pages` に組み込み済み）。ページ間ナビが無いLPのため、この2ページにだけ `build-home.mjs` が固定メニュー（HOME/LECTURE/ABOUT/NEWS/JOIN/CONTACT）を注入する。他のページは既存の Elementor-mirror ヘッダー（BaseLayout）がナビを持つので注入しない。
+- **`/` と `/manifest/` は `institute/apps/lp/v7`（現実科学研究所LP）が source**。`scripts/build-home.mjs` が astro build 後にそのまま流し込む（`npm run build`/`build:pages` に組み込み済み。ビルド時の加工なし）。ヘッダーナビ・遷移先は `institute/apps/lp/v7/index.html`（`__bundler/template` 内のHTML文字列）を直接編集する。他のページは既存の Elementor-mirror ヘッダー（BaseLayout）がナビを持つ。
 - **`/lecture/` の NEWS / NEXT LECTURE / LECTURE 一覧はコレクション駆動**。`src/pages/lecture/index.astro` が記事から生成して `src/mirror/home.body.html` の該当領域を差し替え、`src/mirror/archive.shell.html` の一覧を末尾に結合する。**`home.body.html` のこの領域を手編集しない**（記事 `.md` を足せば自動で並ぶ）。
 - 差し替えは `home.body.html` 内の安定 text anchor を使い、**anchor 不一致時は build を止める**。`scripts/mirror-chrome.mjs` で mirror を撮り直したら、`lecture/index.astro` の anchor 文字列を新スナップショットに合わせて更新すること。
 - `/event/` は `astro.config.mjs` の `redirects` で `/lecture/` へ転送（重複コンテンツを残さない）。
