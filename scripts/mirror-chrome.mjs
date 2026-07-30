@@ -4,10 +4,10 @@
 // Also saves the rendered page HTML to _mirror/ for hand-extracting header/footer.
 //   node scripts/mirror-chrome.mjs
 //
-// ⚠️ src/pages/index.astro は HOME を動的化するため、コミット済みの
+// ⚠️ src/pages/lecture/index.astro は NEWS/NEXT LECTURE を動的化するため、コミット済みの
 // src/mirror/home.body.html 内の特定投稿（post-4981 / vol-70・71・72）を text anchor に
-// して3領域(NEWS/NEXT/グリッド)を差し替えている。home.body.html を再 carve すると
-// それらの anchor が変わり build が（意図的に）落ちる。再取得したら index.astro の
+// して差し替えている。home.body.html を再 carve すると
+// それらの anchor が変わり build が（意図的に）落ちる。再取得したら lecture/index.astro の
 // anchor 文字列を新スナップショットに合わせて更新すること。
 import fs from 'node:fs';
 import path from 'node:path';

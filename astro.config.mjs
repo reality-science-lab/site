@@ -10,6 +10,10 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
+  // /event/ は LECTURE に統合済み（旧URLは新URLへ転送、重複コンテンツを残さない）
+  redirects: {
+    '/event': '/lecture/',
+  },
   // 本文に含まれる生 HTML（YouTube iframe 等）をそのまま通す
   markdown: {
     // WP のクラシック HTML 由来のため、見出しの自動 ID 付与のみ有効化
