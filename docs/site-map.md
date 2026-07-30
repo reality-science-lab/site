@@ -1,8 +1,8 @@
 # 現実科学研究所／現実科学ラボ サイトマップ
 
-現実科学研究所LPをHOMEに置き、現実科学ラボの既存TOPとLECTURE一覧を `/lecture/` に統合する整理案です。既存コンテンツの移動・統合のみを行い、新規ページや新規コンテンツは追加しません。
+現実科学研究所LPをHOMEに置き、現実科学ラボの既存TOPとLECTURE一覧を `/lecture/` に統合した構成です。既存コンテンツの移動・統合のみを行い、新規ページや新規コンテンツは追加していません。
 
-現在は本番ルートを変更せず、確認用として全URLの先頭に `/sample` を付けて公開します。たとえば、この文書の `/` は `https://reality-science.com/sample/`、`/lecture/` は `https://reality-science.com/sample/lecture/` に対応します。確認用ページには検索除外指定を入れますが、URLを知る人は閲覧できます。
+本番切り替え済み。以下の各URLはそのまま本番の実URLです（`/sample/` での確認公開は終了し、`/event/` は `/lecture/` へ転送されます）。
 
 ```mermaid
 flowchart TD
@@ -57,13 +57,10 @@ flowchart TD
 
 > 記事は複数カテゴリに所属できるため、各一覧の掲載数の合計は全記事数と一致しません。
 
-## URL移行（本番切り替え時の想定）
+## URL移行（本番切り替え済み）
 
-- `/institute/lp/` → `/`
-- `/institute/lp/manifest/` → `/manifest/`
-- `/event/` → `/lecture/`
-
-確認公開中は既存の本番URLを変更せず、`/sample/event/` のみ `/sample/lecture/` へ転送します。本番切り替え時には旧URLに同一内容を残さず、新URLへ転送します。
+- `/event/` → `/lecture/`（転送済み）
+- `/institute/lp/` → `/`（今回の切り替えで完了。同じ現実科学研究所LPが `/` でも公開されている）
 
 ## 非公開として扱うもの
 

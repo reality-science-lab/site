@@ -26,6 +26,8 @@ function rewrite(content, isCss) {
   let s = content;
   // href/src/action/poster attributes
   s = s.replace(new RegExp(`(\\s(?:href|src|action|poster)=")\\/${NEG}`, 'g'), `$1${base}/`);
+  // meta refresh redirects (<meta http-equiv="refresh" content="0;url=/...">)
+  s = s.replace(new RegExp(`(content="\\d+;\\s*url=)\\/${NEG}`, 'g'), `$1${base}/`);
   // srcset: rewrite each candidate URL
   s = s.replace(/(\ssrcset=")([^"]*)"/g, (_, pre, val) => {
     const fixed = val.replace(new RegExp(`(^|,\\s*)\\/${NEG}`, 'g'), `$1${base}/`);

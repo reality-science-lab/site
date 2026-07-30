@@ -21,10 +21,12 @@ WordPress + Elementor の「現実科学ラボ」(reality-science.com) を **Ast
 - 公開は `draft: false` にして **ブランチ → PR**。main マージで自動デプロイ。
 - frontmatter スキーマは `src/content.config.ts` が唯一の正。`title` / `date`（公開日＝permalink の年月）/ `slug` が必須。レクチャーはタイトルに `（YYYY/M/D開催）` を必ず入れる（NEXT LECTURE の並びがこの日付で決まる）。
 
-## HOME と mirror は手で書き換えない（自動生成・忠実ミラー）
+## HOME は現実科学研究所LP、LECTUREがラボの旧HOME相当（自動生成・忠実ミラー）
 
-- **HOME の NEWS / NEXT LECTURE / LECTURE グリッドはコレクション駆動**。`src/pages/index.astro` が記事から生成して `src/mirror/home.body.html` の該当3領域を差し替える。**`home.body.html` のこの3領域を手編集しない**（記事 `.md` を足せば自動で並ぶ）。
-- 差し替えは `home.body.html` 内の安定 text anchor を使い、**anchor 不一致時は build を止める**。`scripts/mirror-chrome.mjs` で mirror を撮り直したら、`index.astro` の anchor 文字列を新スナップショットに合わせて更新すること。
+- **`/` と `/manifest/` は `institute/apps/lp/v7`（現実科学研究所LP）が source**。`scripts/build-home.mjs` が astro build 後に流し込む（`npm run build`/`build:pages` に組み込み済み）。ページ間ナビが無いLPのため、この2ページにだけ `build-home.mjs` が固定メニュー（HOME/LECTURE/ABOUT/NEWS/JOIN/CONTACT）を注入する。他のページは既存の Elementor-mirror ヘッダー（BaseLayout）がナビを持つので注入しない。
+- **`/lecture/` の NEWS / NEXT LECTURE / LECTURE 一覧はコレクション駆動**。`src/pages/lecture/index.astro` が記事から生成して `src/mirror/home.body.html` の該当領域を差し替え、`src/mirror/archive.shell.html` の一覧を末尾に結合する。**`home.body.html` のこの領域を手編集しない**（記事 `.md` を足せば自動で並ぶ）。
+- 差し替えは `home.body.html` 内の安定 text anchor を使い、**anchor 不一致時は build を止める**。`scripts/mirror-chrome.mjs` で mirror を撮り直したら、`lecture/index.astro` の anchor 文字列を新スナップショットに合わせて更新すること。
+- `/event/` は `astro.config.mjs` の `redirects` で `/lecture/` へ転送（重複コンテンツを残さない）。
 - `src/mirror/`・`public/wp-content`・vendored CSS/JS/font は旧サイトの忠実ミラー。**自分のセンスで markup を作り直さず、元の class/構造/挙動をそのまま保つ**（CSS は元の Elementor class に依存している）。
 
 ## 画像の落とし穴（NFD/NFC）
@@ -52,7 +54,8 @@ macOS は日本語ファイル名を NFD で保持するが Pages(Linux) はバ�
 | パス | 中身 |
 |---|---|
 | `src/content/articles/*.md` | 記事本体（1記事1ファイル・SSoT） |
-| `src/pages/index.astro` | HOME（3領域をコレクションから生成して mirror に差し込む） |
+| `scripts/build-home.mjs` | `/` と `/manifest/`（現実科学研究所LP）を astro build 後に流し込む |
+| `src/pages/lecture/index.astro` | LECTURE（旧ラボHOME相当。NEWS/NEXT LECTURE領域をコレクションから生成して mirror に差し込む） |
 | `src/mirror/` | 旧サイトから carve した header/footer/HOME 等の HTML フラグメント |
 | `src/layouts/` `src/lib/posts.ts` | レイアウトと記事の取得・並び替え |
 | `public/wp-content/` | 記事が参照するメディア（静的配信コンテンツとして同居） |
