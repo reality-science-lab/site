@@ -10,9 +10,14 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
-  // /event/ は LECTURE に統合済み（旧URLは新URLへ転送、重複コンテンツを残さない）
+  // 旧URLは新URLへ転送し、重複コンテンツを残さない。
+  // - /event/ は LECTURE に統合済み
+  // - /institute/lp/ は LP が本番 TOP( / )に昇格した際の旧URL（本文は build-home.mjs が
+  //   / と /manifest/ に出力する。embed-lp.mjs による public/institute/lp/ への複製は停止）
   redirects: {
     '/event': '/lecture/',
+    '/institute/lp': '/',
+    '/institute/lp/manifest': '/manifest/',
   },
   // 本文に含まれる生 HTML（YouTube iframe 等）をそのまま通す
   markdown: {

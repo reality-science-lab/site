@@ -60,7 +60,9 @@ flowchart TD
 ## URL移行（本番切り替え済み）
 
 - `/event/` → `/lecture/`（転送済み）
-- `/institute/lp/` → `/`（今回の切り替えで完了。同じ現実科学研究所LPが `/` でも公開されている）
+- `/institute/lp/` → `/`（転送済み。旧URLは `astro.config.mjs` の `redirects` で `/` へ転送し、
+  本文の重複配信を解消した。LP の複製を作っていた `scripts/embed-lp.mjs` はビルドから外している）
+- `/institute/lp/manifest/` → `/manifest/`（同上）
 
 ## 非公開として扱うもの
 

@@ -30,31 +30,47 @@
 <div class="elementor-field-type-textarea elementor-field-group elementor-column elementor-col-100 elementor-field-required">
 <label for="rs-f-message" class="elementor-field-label">Message（必須）</label>
 <textarea class="elementor-field-textual elementor-field elementor-size-md" name="message" id="rs-f-message" rows="6" placeholder="メッセージをご入力ください" required="required" aria-required="true"></textarea></div>
-<input type="hidden" name="_source" value="トップページ CONTACT" />
+<input type="hidden" name="_source" value="CONTACT ページ（/contact/）" />
+<input type="hidden" name="_token" value="rsi-form-2026-a7f3c91e" />
+<div class="rs-hp" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+<label for="rs-f-hp">この欄は入力しないでください</label>
+<input type="text" name="_hp" id="rs-f-hp" tabindex="-1" autocomplete="off"></div>
 <div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
 <button type="submit" class="elementor-button elementor-size-lg"><span><span class="elementor-button-text">送信する</span></span></button></div>
 </div>
 </form>
 <p class="rs-contact-sent" id="rsContactMsg" hidden>送信しました。お問い合わせありがとうございます。</p>
+<p class="rs-contact-error" id="rsContactErr" role="alert" hidden style="color:#CD4B52">送信に失敗しました。お手数ですが、時間をおいて再度お試しください。</p>
 </div></div></div>
 <script>
 (function () {
   var f = document.getElementById("rsContactForm");
   if (!f) return;
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbxTKoGPg1NE3kc8xbmjHz4QBx9VLU1ZGyJ07Tol5VJ5hkqTx4-GN2n_TigZLm8MeDa8/exec";
   f.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!f.checkValidity()) { f.reportValidity(); return; }
     var btn = f.querySelector('[type="submit"]');
+    var ok = document.getElementById("rsContactMsg");
+    var ng = document.getElementById("rsContactErr");
+    if (ng) ng.hidden = true;
     if (btn) btn.disabled = true;
-    fetch("https://script.google.com/macros/s/AKfycbxTKoGPg1NE3kc8xbmjHz4QBx9VLU1ZGyJ07Tol5VJ5hkqTx4-GN2n_TigZLm8MeDa8/exec", {
-      method: "POST", mode: "no-cors", body: new FormData(f)
-    }).then(function () {
-      var m = document.getElementById("rsContactMsg"); if (m) m.hidden = false;
-      f.reset();
-    }).catch(function () {
-      if (btn) btn.disabled = false;
-      alert("送信に失敗しました。時間をおいて再度お試しください。");
-    });
+    // mode:"cors" で送る（GAS は CORS 応答を返す）。返却 JSON を検証し、
+    // サーバ側で失敗していた場合に成功表示を出さない＝サイレント失敗を防ぐ。
+    fetch(ENDPOINT, { method: "POST", mode: "cors", body: new FormData(f) })
+      .then(function (r) {
+        if (!r.ok) throw new Error("http " + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        if (!data || data.result !== "ok") throw new Error(data && data.message ? data.message : "server error");
+        if (ok) ok.hidden = false;
+        f.reset();
+      })
+      .catch(function () {
+        if (btn) btn.disabled = false;
+        if (ng) ng.hidden = false;
+      });
   });
 })();
 </script>
