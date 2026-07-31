@@ -38,6 +38,23 @@ macOS は日本語ファイル名を NFD で保持するが Pages(Linux) はバ�
 - `main` への push で `.github/workflows/deploy.yml` が `npm run build:pages` → Pages。project-page 配信のため root 絶対パスに `/site` を前置する（`scripts/rebase.mjs`）。canonical/OG は env（`SITE_ORIGIN`/`BASE_PATH`）で出し分けるので、**本番ドメイン URL を原稿やコードに直書きしない**。
 - 独自ドメイン `reality-science.com` への DNS カットオーバーは**本番を止める操作＝明示 GO 後のゲート**。そのとき `build:pages` を `build` に戻し `public/CNAME` を追加する。
 
+## 問い合わせフォーム（GAS 経由でメール送信）
+
+静的サイトにサーバーはないため、フォームは **Google Apps Script の Web App** に POST し、
+GAS が `reality-science@dhw.ac.jp` へメールを送る。外部のフォーム代行サービスは使っていない。
+
+- 入口は2つ。どちらも同じ GAS エンドポイントに送り、`_source` で送信元を区別する。
+  - `/`（研究所LP・`institute/apps/lp/v7/index.html`）の `joinForm`
+  - `/contact/`（`src/mirror/contact.body.html`）の `rsContactForm`
+- `mode:"cors"` で送信し、**返却 JSON の `result` を検証**してから成功表示を出す
+  （`no-cors` だとサーバー側が失敗しても成功に見えるため）。
+- スパム対策は **ハニーポット（`_hp`）＋共有トークン（`_token`）**。トークンはページのソースに
+  出るので万能ではない（無差別ボットと URL 直叩きを止める層）。
+- **GAS 側のコードは [docs/contact-form-gas.gs](docs/contact-form-gas.gs) に写しを置いている**。
+  本番反映は GAS 側での更新＋再デプロイが必要。再デプロイは「デプロイを管理」→既存デプロイを
+  編集→「新バージョン」。**「新しいデプロイ」を作ると URL が変わりフォームが壊れる**。
+- 疎通確認は `_ping=1` を POST（メールを送らずに応答だけ返る）。
+
 ## Git
 
 - **`main` に直接 push しない。必ずブランチ → PR。** コミット/PR には「なぜ」を書く。
@@ -47,7 +64,9 @@ macOS は日本語ファイル名を NFD で保持するが Pages(Linux) はバ�
 
 - `_dump/`（WordPress ダンプ。ビルド入力のローカル専用、2.77GB）
 - `dist/`（ビルド成果物）
-- `/public/institute/`（`scripts/embed-lp.mjs` が build 時に生成する研究所 LP のコピー）
+- `/public/institute/`（旧 `scripts/embed-lp.mjs` の生成物。**現在ビルドでは使っていない** —
+  LP は `build-home.mjs` が `/` と `/manifest/` に出力し、旧 URL `/institute/lp/` は
+  `astro.config.mjs` の `redirects` で `/` へ転送する）
 
 ## ディレクトリ早見
 
@@ -59,6 +78,7 @@ macOS は日本語ファイル名を NFD で保持するが Pages(Linux) はバ�
 | `src/mirror/` | 旧サイトから carve した header/footer/HOME 等の HTML フラグメント |
 | `src/layouts/` `src/lib/posts.ts` | レイアウトと記事の取得・並び替え |
 | `public/wp-content/` | 記事が参照するメディア（静的配信コンテンツとして同居） |
-| `institute/docs/` `institute/apps/lp/` | 現実科学研究所(RSI)資材。LP は build 時 `/institute/lp/` に配信 |
+| `institute/docs/` `institute/apps/lp/` | 現実科学研究所(RSI)資材。LP(v7)は `build-home.mjs` が `/` と `/manifest/` に配信 |
+| `docs/contact-form-gas.gs` | 問い合わせフォームの受信スクリプト（GAS側で稼働。**記録用の写し**） |
 | `scripts/` | 雛形生成・移行・mirror・NFC 正規化などのツール |
 | `docs/adding-articles.md` | 記事追加の正本 SOP |
