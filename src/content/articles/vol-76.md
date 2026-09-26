@@ -49,6 +49,8 @@ X（旧Twitter）のハッシュタグは「[#現実とは](https://twitter.com/
 
 ## 登壇者
 
+![](/wp-content/uploads/2026/09/76_shirai.jpg)
+
 ### 白井 暁彦
 
 工学博士／デジタルハリウッド大学大学院 客員教授／AICU代表
