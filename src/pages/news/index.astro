@@ -1,6 +1,23 @@
 ---
-import ArchiveLayout from '../../layouts/ArchiveLayout.astro';
-import { getArticlesInCategory } from '../../lib/posts';
-const entries = await getArticlesInCategory('news');
+import NewsLayout from '../../layouts/NewsLayout.astro';
+import { getNews, newsUrl, newsDate, displayNewsDate } from '../../lib/news';
+const entries = await getNews();
 ---
-<ArchiveLayout title="NEWS - 現実科学ラボ" archiveTitle="NEWS" entries={entries} />
+<NewsLayout title="ニュース | 現実科学研究所" description="現実科学研究所からのお知らせ、研究・連携活動のニュースをお届けします。">
+  <header class="news-heading">
+    <p class="eyebrow">NEWS</p>
+    <h1>ニュース</h1>
+    <p>現実科学研究所からのお知らせ</p>
+  </header>
+  {entries.length ? <div class="news-grid">
+    {entries.map(({ data }) => <a class="news-card" href={newsUrl(data.slug)}>
+      {data.featured_image && <img class="news-card__image" src={data.featured_image} alt={data.featured_image_alt || ''} loading="lazy" />}
+      <div class="news-card__body">
+        <time datetime={newsDate(data.date)}>{displayNewsDate(data.date)}</time>
+        <h2>{data.title}</h2>
+        <p class="news-card__excerpt">{data.excerpt}</p>
+        <span class="news-card__more" aria-hidden="true">続きを読む ↗</span>
+      </div>
+    </a>)}
+  </div> : <p class="news-empty">ニュースはまだありません</p>}
+</NewsLayout>

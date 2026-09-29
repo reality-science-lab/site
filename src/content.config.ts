@@ -25,4 +25,26 @@ const articles = defineCollection({
   }),
 });
 
-export const collections = { articles };
+const news = defineCollection({
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/content/news',
+    // Preserve files with duplicate frontmatter slugs so getNews can reject them.
+    generateId: ({ entry }) => entry,
+  }),
+  schema: z.object({
+    title: z.string().min(1),
+    short_title: z.string().optional(),
+    date: z.coerce.date(),
+    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+      .refine((slug) => slug !== 'pr', 'news slug "pr" is reserved'),
+    excerpt: z.string().min(1),
+    featured_image: z.string().optional(),
+    featured_image_alt: z.string().optional(),
+    source_url: z.string().url().regex(/^https?:\/\//).optional(),
+    source_label: z.string().default('PR TIMES'),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { articles, news };
