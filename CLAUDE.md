@@ -27,6 +27,13 @@ WordPress + Elementor の「現実科学ラボ」(reality-science.com) を **Ast
 - **`/lecture/` の NEWS / NEXT LECTURE / LECTURE 一覧はコレクション駆動**。`src/pages/lecture/index.astro` が記事から生成して `src/mirror/home.body.html` の該当領域を差し替え、`src/mirror/archive.shell.html` の一覧を末尾に結合する。**`home.body.html` のこの領域を手編集しない**（記事 `.md` を足せば自動で並ぶ）。
 - 差し替えは `home.body.html` 内の安定 text anchor を使い、**anchor 不一致時は build を止める**。`scripts/mirror-chrome.mjs` で mirror を撮り直したら、`lecture/index.astro` の anchor 文字列を新スナップショットに合わせて更新すること。
 - `/event/` は `astro.config.mjs` の `redirects` で `/lecture/` へ転送（重複コンテンツを残さない）。
+
+## 研究所ニュース（`/news/`）は記事とは別コレクション（2026-09-29〜）
+
+- `/news/` は現実科学研究所のニュース（プレスリリース等）。**`src/content/news/*.md`（`news` コレクション）が source** で、ラボ記事の `articles` とは別。ラボ記事の `news` カテゴリは `/news/` に出ない（`/lecture/` の NEWS 欄に出る）。
+- `.md` を1枚足すと、一覧 `/news/`・詳細 `/news/<slug>/`・トップの通知カード（`/news/latest.json` を `public/scripts/news-notice.js` が読む）が更新される。**LP は触らない**。手順は [docs/adding-news.md](docs/adding-news.md)。
+- 見た目は研究所 LP に合わせた `src/layouts/NewsLayout.astro` + `src/styles/news.css`。Elementor mirror は使わない。
+- LP 側の変更はグロナビ（ヘッダー・フッター）の「ニュース」と `<script src="/scripts/news-notice.js" defer>` の1行だけ。LP を撮り直したらこの3点を戻すこと。
 - `src/mirror/`・`public/wp-content`・vendored CSS/JS/font は旧サイトの忠実ミラー。**自分のセンスで markup を作り直さず、元の class/構造/挙動をそのまま保つ**（CSS は元の Elementor class に依存している）。
 
 ## 画像の落とし穴（NFD/NFC）
@@ -73,6 +80,7 @@ GAS が `reality-science@dhw.ac.jp` へメールを送る。外部のフォー�
 | パス | 中身 |
 |---|---|
 | `src/content/articles/*.md` | 記事本体（1記事1ファイル・SSoT） |
+| `src/content/news/*.md` | 研究所ニュース（`/news/`）。画像は `public/uploads/news/<slug>/` |
 | `scripts/build-home.mjs` | `/` と `/manifest/`（現実科学研究所LP）を astro build 後に流し込む |
 | `src/pages/lecture/index.astro` | LECTURE（旧ラボHOME相当。NEWS/NEXT LECTURE領域をコレクションから生成して mirror に差し込む） |
 | `src/mirror/` | 旧サイトから carve した header/footer/HOME 等の HTML フラグメント |

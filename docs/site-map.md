@@ -12,7 +12,8 @@ flowchart TD
     about["ABOUT<br/>/about/"]
     contact["CONTACT<br/>/contact/"]
     join["ラボへの参加・協賛<br/>/join/"]
-    news["NEWS<br/>/news/<br/>68記事"]
+    news["NEWS<br/>研究所ニュース<br/>/news/<br/>3本"]
+    newsdetail["ニュース詳細<br/>/news/{slug}/"]
     workshop["WORKSHOP<br/>/workshop/<br/>2記事"]
     pr["PR<br/>/news/pr/<br/>1記事"]
     article["記事詳細<br/>/{year}/{month}/{slug}/<br/>全89記事"]
@@ -28,8 +29,7 @@ flowchart TD
     contact --> join
     lecture --> article
     lecture --> news
-    news --> article
-    news --> pr
+    news --> newsdetail
     workshop --> article
     pr --> article
 ```
@@ -41,7 +41,7 @@ flowchart TD
 | HOME | `/` | 現実科学研究所LP |
 | LECTURE | `/lecture/` | 現実科学ラボTOPと講演一覧を統合 |
 | ABOUT | `/about/` | ラボ紹介 |
-| NEWS | `/news/` | ニュース一覧 |
+| NEWS | `/news/` | 研究所ニュース一覧（2026-09-29〜。LPヘッダー・フッター、下層ページのヘッダーに掲載） |
 | JOIN | `/join/` | ラボへの参加・協賛 |
 | CONTACT | `/contact/` | お問い合わせ |
 
@@ -51,7 +51,8 @@ flowchart TD
 |---|---|---:|---|
 | 設立趣意書 | `/manifest/` | — | HOMEから遷移 |
 | WORKSHOP一覧 | `/workshop/` | 2記事 | なし |
-| PR一覧 | `/news/pr/` | 1記事 | NEWS配下 |
+| ニュース詳細 | `/news/{slug}/` | 3本 | NEWSから遷移。トップの通知カードからも遷移 |
+| PR一覧 | `/news/pr/` | 1記事 | なし（旧ラボのカテゴリ一覧） |
 | 記事詳細 | `/{year}/{month}/{slug}/` | 89記事 | LECTURE・NEWS等から遷移 |
 | 404 | `/404.html` | — | システムページ |
 
@@ -88,7 +89,7 @@ flowchart TD
 - `/about/` — **ABOUT**。現実科学ラボの目的や活動方針を紹介するページ。
 - `/contact/` — **CONTACT**。ラボへの問い合わせ窓口。現状は静的サイトのため、フォーム送信機能には別途バックエンドが必要。
 - `/join/` — **ラボへの参加・協賛**。参加、協賛、連携を検討する人・組織向けの案内。
-- `/news/` — **NEWS**。ニュースカテゴリの記事一覧。68記事。
+- `/news/` — **NEWS**。現実科学研究所のニュース一覧（`src/content/news/`）。3本。2026-09-29 にラボ記事の `news` カテゴリ一覧から切り替えた。
 - `/workshop/` — **WORKSHOP**。ワークショップ記事の一覧。2記事。グローバルナビゲーションには未掲載。
 - `/news/pr/` — **PR**。プレスリリース記事の一覧。1記事。グローバルナビゲーションには未掲載。
 - `/404.html` — **404**。存在しないURLへアクセスした場合のエラーページ。

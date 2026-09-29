@@ -100,7 +100,7 @@ PR が **main にマージされると GitHub Actions が自動でビルド & �
 | 自動更新される場所 | 中身 |
 |---|---|
 | 記事ページ `/YYYY/MM/<slug>/` | 本文 |
-| カテゴリ一覧 `/event/` `/news/` … | `categories` に応じて新着順 |
+| カテゴリ一覧 `/workshop/` `/news/pr/` … | `categories` に応じて新着順（`news` カテゴリの一覧ページは無い） |
 | HOME › **NEWS** | 全カテゴリの新着4件（公開日順） |
 | HOME › **LECTURE SERIES** グリッド | `event` の最新3件 |
 | HOME › **NEXT LECTURE** | これから開催の最も近いレクチャー（タイトルの開催日で判定。無ければ最新） |
@@ -127,7 +127,7 @@ draft: false               # true の間は公開されない
 | カテゴリ slug | 表示名 | 一覧 URL |
 |---|---|---|
 | `event` | LECTURE | `/event/` |
-| `news` | NEWS | `/news/` |
+| `news` | NEWS | 一覧ページなし（`/lecture/` の NEWS 欄に出る）。`/news/` は研究所ニュース専用 → [adding-news.md](adding-news.md) |
 | `workshop` | WORKSHOP | `/workshop/` |
 | `pr` | PR | `/news/pr/` |
 

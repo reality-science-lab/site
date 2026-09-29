@@ -1,0 +1,29 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import NewsLayout from '../../layouts/NewsLayout.astro';
+import { getNews, newsDate, displayNewsDate } from '../../lib/news';
+
+export async function getStaticPaths() {
+  return (await getNews()).map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+interface Props { entry: CollectionEntry<'news'> }
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+---
+<NewsLayout title={`${data.title} | 現実科学研究所`} description={data.excerpt} ogImage={data.featured_image} article>
+  <article class="news-article">
+    <header class="news-article__header">
+      <a class="news-back" href="/news/">← ニュース一覧へ戻る</a>
+      <p class="eyebrow">NEWS <time datetime={newsDate(data.date)}>{displayNewsDate(data.date)}</time></p>
+      <h1>{data.title}</h1>
+      {data.featured_image && <img class="news-article__image" src={data.featured_image} alt={data.featured_image_alt || ''} />}
+    </header>
+    <div class="news-content"><Content /></div>
+    {data.source_url && <aside class="news-source" aria-label="配信元">
+      <p>このニュースは{data.source_label}で配信したプレスリリースです。</p>
+      <a href={data.source_url} target="_blank" rel="noopener noreferrer">{data.source_label}で元記事を読む（別タブ） ↗</a>
+    </aside>}
+    <a class="news-back news-back--bottom" href="/news/">← ニュース一覧へ戻る</a>
+  </article>
+</NewsLayout>

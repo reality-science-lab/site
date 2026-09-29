@@ -16,6 +16,9 @@
 ### 📝 記事を追加する
 → [記事の追加方法](adding-articles.md)。雛形コマンド → 写真を置く → 本文 → `draft` を外す → PR。
 
+### 📰 研究所のニュースを追加する
+→ [研究所ニュースの追加方法](adding-news.md)。`src/content/news/` に `.md` を1枚足すと、`/news/` の一覧・詳細・トップの通知カードが更新される（ラボの記事とは別）。
+
 ### ✏️ 記事を直す（誤字・内容修正）
 1. `src/content/articles/<slug>.md` を編集する。
 2. `npm run dev` で http://localhost:4321/ を見て確認。
