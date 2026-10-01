@@ -10,6 +10,8 @@ draft: false
 
 [![](/wp-content/uploads/2026/09/rsl_076_01.jpg)](https://reality-science076.peatix.com)
 
+<p style="margin:-1.4rem 0 2.2rem; text-align:right; font-family:'Open Sans','Noto Sans JP',sans-serif; font-size:0.8125rem; line-height:1.6; letter-spacing:0.06em; color:#888;">バナーデザイン：游（<a href="https://x.com/urym_u">X</a>）</p>
+
 現実科学ラボがお届けする「現実科学 レクチャーシリーズ」。
 
 「現実を科学し、ゆたかにする」をテーマに、デジタルハリウッド大学 学長　藤井直敬がホストになって各界有識者をお招きし、お話を伺うレクチャー＋ディスカッションのトークイベントです。
