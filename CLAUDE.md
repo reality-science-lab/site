@@ -48,7 +48,7 @@ macOS は日本語ファイル名を NFD で保持するが Pages(Linux) はバ�
 ## 問い合わせフォーム（GAS 経由でメール送信）
 
 静的サイトにサーバーはないため、フォームは **Google Apps Script の Web App** に POST し、
-GAS が `reality-science@dhw.ac.jp` へメールを送る。外部のフォーム代行サービスは使っていない。
+GAS が `reality-science@dhw.ac.jp` へメールを送る（控えとして `suzukiyu@dhw.co.jp` に Cc。2026-10-23〜）。外部のフォーム代行サービスは使っていない。
 
 - 入口は2つ。どちらも同じ GAS エンドポイントに送り、`_source` で送信元を区別する。
   - `/`（研究所LP・`institute/apps/lp/v7/index.html`）の `joinForm`
