@@ -25,6 +25,8 @@
  */
 
 var TO_ADDRESS = 'reality-science@dhw.ac.jp';
+// 控えとして同じ内容を Cc で送る宛先（複数ならカンマ区切り。不要になったら '' にする）
+var CC_ADDRESS = 'suzukiyu@dhw.co.jp';
 var FORM_TOKEN = 'rsi-form-2026-a7f3c91e';
 
 function doPost(e) {
@@ -65,6 +67,9 @@ function doPost(e) {
       subject: '[現実科学ラボ] お問い合わせ: ' + subject,
       body: body
     };
+    if (CC_ADDRESS) {
+      options.cc = CC_ADDRESS;
+    }
     // 返信先は、正しい形式のときだけ設定する（不正値で送信自体が失敗するのを防ぐ）
     if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       options.replyTo = email;
