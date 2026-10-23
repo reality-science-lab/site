@@ -11,9 +11,11 @@ import { getArticlesByPublishDate, getArticlesInCategory, type CardItem } from '
 const news = (await getArticlesByPublishDate()).slice(0, 4);
 const lectures = await getArticlesInCategory('event');
 
-const now = new Date();
-const todayUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-const upcoming = lectures.filter((lecture) => lecture.sortKey >= todayUTC).sort((a, b) => a.sortKey - b.sortKey);
+// sortKey is 00:00 UTC of the lecture date. A lecture ends at 21:00 JST (= 12:00 UTC
+// the same day), so after that a build on the same night already shows the next one.
+const LECTURE_END_OFFSET_MS = 12 * 60 * 60 * 1000;
+const now = Date.now();
+const upcoming = lectures.filter((lecture) => lecture.sortKey + LECTURE_END_OFFSET_MS > now).sort((a, b) => a.sortKey - b.sortKey);
 const next: CardItem | undefined = upcoming[0] ?? lectures[0];
 
 const esc = (value: string) =>
